@@ -66,7 +66,7 @@ deepseek-harness-project-collection-starter/
 
 ### How to Use
 
-1. Clone the entire project.
+1. Clone the entire project and make sure the shared-standards folder exists. (After that, users won't need to touch it, and agents should rarely modify it either. Since it contains global project standards, any changes to it would require elevated privileges.)
 
    > You can also rename `deepseek-harness-project-collection-starter` to something you prefer, e.g., `my-dsh-projects`.
 
@@ -78,9 +78,11 @@ deepseek-harness-project-collection-starter/
 
 4. Create a new session window and chat as usual.
 
-### How to Better Automate Project Management
+### How to Better Manage Your Project? Don't!
 
 - The template project comes with a built-in `AGENTS.md` file, which will be automatically loaded in the project session window.
+
+  > Thanks to this very feature of DeepSeek Harness — document-to-document referencing — all project-organizing work is arranged right at the start of the session, achieving automation without any code plugins needed.
 
 - `AGENTS.md` automatically indexes the directory structure, so you don't need to maintain it manually.
 
