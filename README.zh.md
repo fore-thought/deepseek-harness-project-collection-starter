@@ -82,7 +82,7 @@ deepseek-harness-project-collection-starter/
 
 - 模板项目自带 `AGENTS.md` ，项目会话窗口会自动加载。
 
-- `AGENTS.md` 里会自动索引目录结构，目录结构不用可以维护。
+- `AGENTS.md` 里会自动索引目录结构，目录结构不用用户自己维护。
 
   > *让大肥鱼证明一下她自己不是吃白饭的！*
 
