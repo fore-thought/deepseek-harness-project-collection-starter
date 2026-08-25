@@ -66,7 +66,7 @@ deepseek-harness-project-collection-starter/
 
 ### 使用方法
 
-1. 整个项目克隆下来。
+1. 整个项目克隆下来，确保 `shared-standards` 文件夹存在（之后用户不在动它，agent 也应当很少动它，而动它因为是全局项目规范，所以会需要提权修改）。
 
    > `deepseek-harness-project-collection-starter` 这个名字不喜欢你也可以改，比如： `my-dsh-projects` 。
 
@@ -78,9 +78,11 @@ deepseek-harness-project-collection-starter/
 
 4. 新建会话窗口，正常聊天即可
 
-### 如何更好的自动管理项目
+### 如何更好的管理项目？不管理！
 
 - 模板项目自带 `AGENTS.md` ，项目会话窗口会自动加载。
+
+  > 正是凭借 deepseek harness 这一特性，文档引用文档，从而通过文档在会话的一开始就安排好整理项目的种种工作，从而在不装代码插件的情况下，实现自动化。
 
 - `AGENTS.md` 里会自动索引目录结构，目录结构不用用户自己维护。
 
