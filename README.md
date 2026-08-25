@@ -88,7 +88,7 @@ deepseek-harness-project-collection-starter/
 
 - Suggestion: When the session **context** usage approaches or exceeds **60%**, generate a **handoff document** for a new session and continue your work in a **new session**. How to generate a handoff document for a new session? You can say this to `DeepSeek Harness` in the current session:
 
-  > Let's pause here for now. Organize all the milestone achievements of this session, summarize the experience and knowledge gained, update relevant documents, and prepare a handoff document. Finally, commit the changes via git. We will continue the current work in the next new session.
+  > Let's pause here for now. Organize all the milestone achievements of this session, summarize the experience and knowledge gained, update relevant documents, and prepare a handoff document. Then commit the changes via git, and finally, prepare the first message I need to send in the next new session. We will continue the current work in that next new session.
 
   You can **copy and use** this message directly. (Feel free to use your own wording; the template's markdown already includes behavioral constraints for this message, but this serves as an extra reinforcement. The **key term** is simply **handoff document** and **new session**.)
 
