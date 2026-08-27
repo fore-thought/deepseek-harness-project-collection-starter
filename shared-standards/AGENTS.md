@@ -3,7 +3,7 @@
 > 本文件 = **项目组级公共规范**：位于 `project-group/shared-standards/`，被项目组内
 > 各项目工作区**只读引用**（不随项目复制）。**开始任何任务前先读本文件。**
 > 变更需用户确认；更新走提权通道（见 §8/§9）。
-> 版本: v1.7 ｜ 最近修订: 2026-08-27 ｜ 变更记录见文末。
+> 版本: v1.8 ｜ 最近修订: 2026-08-27 ｜ 变更记录见文末。
 
 ## TOP 规则（最高优先级，与其他内容冲突时以本块为准）
 
@@ -140,11 +140,14 @@
   不另开文档；预算总额在计划书（规划闸）确定；超预算 → 停止 + 卡片请示，不自动放行；
   询价结论先登记假设（状态=待询价），实测后转 [MEASURED]。
 - **用户配置预留文件（两级，TOML）**：项目级 `process/project/configs/project-config.toml`
-  （gitignored）+ 组级 `shared-standards/user-config.toml`（本地填写，.gitignore 排除，
-  不入库；模板 `user-config.template.toml` 入库）。
+  （gitignored，**只含非密钥配置**：git remote、路径、偏好等）+ 组级
+  `shared-standards/user-config.toml`（本地填写，.gitignore 排除，不入库；模板
+  `user-config.template.toml` 入库）。
   **用户首次配置引导**：复制模板文件（去掉 `.template` 后缀）为实例文件并填写——
   组级 `user-config.template.toml` → `user-config.toml`；项目级
   `project-config.template.toml` → `project-config.toml`；未配置走空值逻辑/默认。
+  **密钥统一存放**：平台 API 密钥等**只放 `configs/.env`**（gitignored；模板
+  `env.template` 入库），project-config.toml 不列密钥（见 standards.md §2）。
   **配置读取优先级：项目配置 → 组配置 → 卡片提示用户，由用户决定处理逻辑**。
   空值逻辑：`remote_url` 空 = 本地模式；git 身份项目未配 → 读组级 → 仍空 → 卡片；
   密钥空 → 对应功能不可用或卡片。
@@ -307,3 +310,4 @@
 | 2026-08-27 | v1.5 | §9 实施步骤措辞弱化：移除"回写 starter 仓库"通用表述（会话限定行为，非项目常驻义务），改为"发布/同步由管理员自行决定" | 用户 |
 | 2026-08-27 | v1.6 | §6 用户配置条款补「首次配置引导」：复制模板（去 .template）为实例并填写 | 用户 |
 | 2026-08-27 | v1.7 | §5 文件职责表补 templates 模板区（方案丙落地：docs 实例区 + templates 模板区） | 用户 |
+| 2026-08-27 | v1.8 | §6 修正：密钥统一 configs/.env（toml 只含非密钥配置），消除 .env 与 [secrets] 双轨重复 | 用户 |

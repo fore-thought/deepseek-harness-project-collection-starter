@@ -1,11 +1,10 @@
 # 项目级配置模板 —— 复制为 project-config.toml 后由用户填写（project-config.toml 不入库）
 # 规则：组级 AGENTS.md §6「配置读取优先级」——项目配置优先，未配置读组级
 # ../../../../shared-standards/user-config.toml，再没有则卡片提示用户决定。
+# 本文件只含非密钥配置；密钥统一放 configs/.env（模板 env.template 入库，见 standards.md §2）。
+
+env_file = "configs/.env"      # 密钥文件路径（键名清单见 env.template）
 
 [git]
 # 留空 = 本地模式；填写后代理执行 git remote add origin <url>
 remote_url = ""
-
-[secrets]
-# 推荐：密钥值集中放 .env，这里填 .env 键名；也可直接填值（二选一）
-env_file = "configs/.env"

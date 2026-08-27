@@ -42,5 +42,6 @@
 | 账号注册 | 由用户负责 | 待办 |
 | git 远端/身份 | 在 process/project/configs/project-config.toml（项目）与
   ../shared-standards/user-config.toml（组）填写；优先级=项目→组→卡片；会话中不留痕 | 待填写 |
+| 平台密钥 | 填 process/project/configs/.env（键名见 env.template）；toml 不列密钥（见组级 standards §2） | 待填写 |
 | 大文件下载 | 按代理下载表（网址+存储位置）在主机执行 | — |
 | 决策批准 | 提问卡片拍板（含回填清单、计划书批准） | 常态 |

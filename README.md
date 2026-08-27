@@ -71,7 +71,8 @@ deepseek-harness-project-collection-starter/
 │       │   ├── README.md
 │       │   ├── configs/
 │       │   │   ├── README.md
-│       │   │   └── project-config.template.toml
+│       │   │   ├── project-config.template.toml
+│       │   │   └── env.template
 │       │   └── scripts/
 │       │       ├── README.md
 │       │       └── ctx.cjs

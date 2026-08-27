@@ -28,7 +28,7 @@
   - 真实凭证（API Key/令牌/密码）放项目 `process/project/configs/.env`
     （gitignore 掉），同时保留 `configs/env.template` 占位符版（可进 git）；
   - gitignore 至少排除：`*.env`、`secrets/`、`credentials/`、`*.pem`、`*token*`、
-    `configs/project-config.toml`（项目配置，含远端 URL/密钥，不入库）；
+    `configs/project-config.toml`（项目配置，含远端 URL 等**非密钥**项，不入库；密钥见 `.env`）；
   - 组级 `user-config.toml` 放 `shared-standards/`（.gitignore 排除，不入库）；
   - 模板 `*.template.toml` 为占位符版，可入库（实例 = 去掉 `.template` 后缀，本地填写）；
   - 权限分级：运行所需令牌代理可见；支付/主账号类仅用户可见，代理需要时经用户注入；
