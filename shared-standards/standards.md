@@ -2,7 +2,7 @@
 
 > 项目组级全局规范：记录合规要求、工程规范与项目组特色约定，被各项目只读引用。
 > 更新走提权通道（见 AGENTS.md §8/§9）。发布/商用前逐项核实。
-> 版本: v1.0 ｜ 最近修订: 2026-08-27 ｜ 变更记录见文末。
+> 版本: v1.4 ｜ 最近修订: 2026-08-27 ｜ 变更记录见文末。
 > **横向定位**：本文件覆盖所有项目类型（内容生成/资源整理/其它），只写通用条款；
 > 项目类型特有条目由各项目在项目级 AGENTS §2 或项目文档中自行维护，不写入本文件。
 
@@ -22,10 +22,15 @@
 - 文件名：小写字母 + 连字符，不用空格和中文文件名
 - 结论分层：数字/阈值/事实性结论必标 [MEASURED]/[ESTIMATED]/[UNKNOWN]
   （见 AGENTS.md §2.4）
+- 禁止本地绝对路径：文档/脚本中不出现用户本地绝对路径（如 `C:\...`），
+  一律项目相对路径或中性描述（见 AGENTS.md §4）
 - **敏感信息管理**：
   - 真实凭证（API Key/令牌/密码）放项目 `process/project/configs/.env`
     （gitignore 掉），同时保留 `configs/env.template` 占位符版（可进 git）；
-  - gitignore 至少排除：`*.env`、`secrets/`、`credentials/`、`*.pem`、`*token*`；
+  - gitignore 至少排除：`*.env`、`secrets/`、`credentials/`、`*.pem`、`*token*`、
+    `configs/project-config.toml`（项目配置，含远端 URL/密钥，不入库）；
+  - 组级 `user-config.toml` 放 `shared-standards/`（.gitignore 排除，不入库）；
+  - 模板 `*.template.toml` 为占位符版，可入库（实例 = 去掉 `.template` 后缀，本地填写）；
   - 权限分级：运行所需令牌代理可见；支付/主账号类仅用户可见，代理需要时经用户注入；
   - 泄露应急：发现泄露 → 立即撤销/轮换 → 记 decisions → 复盘原因。
 - **政策监控清单**：平台规则/口径变动统一登记在一份清单（每平台一行：
@@ -43,3 +48,7 @@
 | 日期 | 版本 | 变更 | 批准 |
 |---|---|---|---|
 | 2026-08-27 | v1.0 | 首次版本化：横向化重构（类别+核实机制）/敏感信息管理/政策监控清单/结论分层强制范围 | 用户 |
+| 2026-08-27 | v1.1 | git 远端预留文件 configs/git-remote.md 纳入不入库清单（会话中不留痕） | 用户 |
+| 2026-08-27 | v1.2 | 配置预留文件升级 TOML 两级（project-config.toml 不入库 / user-config.toml 集合根 / *.template.toml 可入库） | 用户 |
+| 2026-08-27 | v1.3 | user-config.toml 移至 shared-standards/（.gitignore 排除）；user-config.template.toml 入库 | 用户 |
+| 2026-08-27 | v1.4 | 工程规范新增「禁止本地绝对路径」（见 AGENTS §4） | 用户 |

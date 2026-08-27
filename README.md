@@ -16,9 +16,12 @@ deepseek-harness-project-collection-starter/
 ├── shared-standards/
 │   ├── AGENTS.md
 │   ├── README.md
-│   └── standards.md
+│   ├── standards.md
+│   ├── user-config.template.toml
+│   └── .gitignore
 ├── project-template/
 │   ├── AGENTS.md
+│   ├── .gitignore
 │   ├── inputs/
 │   │   ├── README.md
 │   │   ├── ai/
@@ -43,7 +46,8 @@ deepseek-harness-project-collection-starter/
 │   │       └── README.md
 │   └── process/
 │       ├── README.md
-│       ├── docs/
+│       ├── docs/                     # instance area
+│       │   ├── README.md
 │       │   ├── assumptions.md
 │       │   ├── construction.md
 │       │   ├── decisions.md
@@ -51,14 +55,26 @@ deepseek-harness-project-collection-starter/
 │       │   ├── measurements.md
 │       │   ├── work-log.md
 │       │   └── plans/
-│       │       ├── goal-spec-template.md
-│       │       └── plan-template.md
+│       │       ├── goal-spec.md
+│       │       └── plan.md
+│       ├── templates/                # template area
+│       │   ├── assumptions.template.md
+│       │   ├── construction.template.md
+│       │   ├── decisions.template.md
+│       │   ├── HANDOFF.template.md
+│       │   ├── measurements.template.md
+│       │   ├── work-log.template.md
+│       │   └── plans/
+│       │       ├── goal-spec.template.md
+│       │       └── plan.template.md
 │       ├── project/
 │       │   ├── README.md
 │       │   ├── configs/
-│       │   │   └── README.md
+│       │   │   ├── README.md
+│       │   │   └── project-config.template.toml
 │       │   └── scripts/
-│       │       └── README.md
+│       │       ├── README.md
+│       │       └── ctx.cjs
 │       └── tmp/
 │           └── README.md
 └── README.md
@@ -78,6 +94,8 @@ deepseek-harness-project-collection-starter/
 
 4. Create a new session window and chat as usual.
 
+5. First-time setup: copy `shared-standards/user-config.template.toml` to `user-config.toml` and fill in your git identity; do the same at project level (`project-config.template.toml` → `project-config.toml`). If left unfilled, defaults/local mode apply (see `shared-standards/AGENTS.md` §6).
+
 ### How to Better Manage Your Project? Don't!
 
 - The template project comes with a built-in `AGENTS.md` file, which will be automatically loaded in the project session window.
@@ -94,4 +112,5 @@ deepseek-harness-project-collection-starter/
 
   You can **copy and use** this message directly. (Feel free to use your own wording; the template's markdown already includes behavioral constraints for this message, but this serves as an extra reinforcement. The **key term** is simply **handoff document** and **new session**.)
 
+- To review or improve the project rules (the "reflection" workflow), open a **dedicated session**: read the rules first → analyze completeness → discuss & confirm → land changes per `shared-standards/AGENTS.md` §9. Don't mix rule changes into regular work sessions.
 - For anything else you're unsure about or curious about the underlying principles, just take a look at the directory structure and the markdown documents under it.

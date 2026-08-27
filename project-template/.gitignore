@@ -1,0 +1,21 @@
+# 临时文件（可随时清空，归档时剔除；保留本区索引 README）
+process/tmp/*
+!process/tmp/README.md
+
+# 常见运行时产物
+node_modules/
+__pycache__/
+.venv/
+venv/
+dist/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# 敏感信息（绝不入库，见组级 standards.md §2）
+*.env
+secrets/
+credentials/
+*.pem
+*token*
+process/project/configs/project-config.toml

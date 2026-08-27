@@ -3,7 +3,7 @@
 > 本文件 = **项目组级公共规范**：位于 `project-group/shared-standards/`，被项目组内
 > 各项目工作区**只读引用**（不随项目复制）。**开始任何任务前先读本文件。**
 > 变更需用户确认；更新走提权通道（见 §8/§9）。
-> 版本: v1.0 ｜ 最近修订: 2026-08-27 ｜ 变更记录见文末。
+> 版本: v1.7 ｜ 最近修订: 2026-08-27 ｜ 变更记录见文末。
 
 ## TOP 规则（最高优先级，与其他内容冲突时以本块为准）
 
@@ -73,6 +73,8 @@
   - `[MEASURED]` / `[ESTIMATED]` / `[UNKNOWN]` —— 结论类型
   - `[SOURCE?]` —— 缺来源
 - 文件引用一律用相对路径。
+- **禁止本地绝对路径**：文档/脚本中一律不出现用户本地绝对路径（如 `C:\...`、
+  本地文件夹全名）；引用一律用项目相对路径或中性描述（如 `process/project/scripts/ctx.cjs`）。
 - 修改现有文件前先 read；新增文件用 write；小改动用 edit。
 - 不要生成超长单行；大文档按小节组织，便于 grep 定位。
 
@@ -82,9 +84,10 @@
 |---|---|---|
 | 项目组级 | shared-standards/AGENTS.md | 本文件：项目组协作规范（只读引用） |
 | 项目组级 | shared-standards/standards.md | 全局合规/工程规范与特色定制（横向） |
+| 项目组级 | shared-standards/user-config.template.toml | 组级用户配置模板（实例 user-config.toml 本地填写，不入库） |
 | 项目级 | AGENTS.md | 项目级规范 + 项目组级引用 + 三大类索引（唯一根级文档） |
 | 项目级 | inputs/ | 一、输入素材（user/ 用户提供；ai/ AI 调研）；本区自维护 README 索引 |
-| 项目级 | process/ | 二、过程工程（tmp/ 临时；project/ 本项目正式工程；docs/ 工作文档）；本区自维护 README 索引 |
+| 项目级 | process/ | 二、过程工程（tmp/ 临时；project/ 正式工程；docs/ 实例区；templates/ 模板区）；本区自维护 README 索引 |
 | 项目级 | outputs/ | 三、输出产物（按产物类型分组）；本区自维护 README 索引 |
 | 项目级 | process/docs/assumptions.md | 假设清单（新增假设在此登记；含 `验证时机` 列） |
 | 项目级 | process/docs/measurements.md | 真机实测记录 |
@@ -92,6 +95,7 @@
 | 项目级 | process/docs/HANDOFF.md | 会话交接（新会话必读）；**含「用户职责表」** |
 | 项目级 | process/docs/work-log.md | 工作日志（全路径，含反复修改/失败） |
 | 项目级 | process/docs/construction.md | 施工文档（只记成功步骤） |
+| 项目级 | process/templates/ | 文档模板区（`<名>.template.md` 永为模板；实例=复制到 docs/ 去 `.template` 后缀） |
 | 项目级 | process/docs/plans/*.md | 目标定义书/计划书与设计文档 |
 | 项目级 | process/docs/spec-proposals/ | 规约修订成文提案（§9 D1 流程；批准实施后合并删除） |
 
@@ -135,10 +139,20 @@
 - **成本治理**：成本账目记 `measurements.md`（实测）+ `work-log.md`（每单元一行），
   不另开文档；预算总额在计划书（规划闸）确定；超预算 → 停止 + 卡片请示，不自动放行；
   询价结论先登记假设（状态=待询价），实测后转 [MEASURED]。
-- **git 双模式**：远端模式（默认推荐：commit + push）与本地模式（用户明确选择：
-  仅本地 git，commit 即收尾）均合法，模式记入项目 HANDOFF。**每次 git 操作前**
-  先查 `git remote -v` 并向用户说明三问：①是否已设置远端？②是否仅提交本地？
-  ③是否已推送远端？——防止"以为推了其实没推"。
+- **用户配置预留文件（两级，TOML）**：项目级 `process/project/configs/project-config.toml`
+  （gitignored）+ 组级 `shared-standards/user-config.toml`（本地填写，.gitignore 排除，
+  不入库；模板 `user-config.template.toml` 入库）。
+  **用户首次配置引导**：复制模板文件（去掉 `.template` 后缀）为实例文件并填写——
+  组级 `user-config.template.toml` → `user-config.toml`；项目级
+  `project-config.template.toml` → `project-config.toml`；未配置走空值逻辑/默认。
+  **配置读取优先级：项目配置 → 组配置 → 卡片提示用户，由用户决定处理逻辑**。
+  空值逻辑：`remote_url` 空 = 本地模式；git 身份项目未配 → 读组级 → 仍空 → 卡片；
+  密钥空 → 对应功能不可用或卡片。
+- **git 双模式**：远端模式（默认推荐：commit + push）与本地模式（仅本地 git，
+  commit 即收尾）均合法，模式以 project-config.toml 的 `remote_url` 为准，
+  会话中不留痕、不主动追问。**每次 git 操作前**先查 `git remote -v` 并向用户
+  说明三问：①是否已设置远端？②是否仅提交本地？③是否已推送远端？——
+  防止"以为推了其实没推"。commit 身份（user.name/email）取配置：项目 → 组 → 卡片。
 - **里程碑复盘（D3）**：每里程碑（一轮 30 条优化闭环/单元组收完/用户指定）强制复盘：
   ①成功判定逐条打勾；②规约执行偏差清单（未遵守/写不清/执行不了）；
   ③偏差 → 修订提案（走 §9 D1 流程）；④纪要入 decisions + work-log；
@@ -276,7 +290,7 @@
 2. **批准**：用户确认。组级修订**必须用户明确批准**（代理只提案、不推动）；
    项目级修订用户确认即可；
 3. **实施**：项目级 = 工作区内直接改；组级 = 提权通道改 shared-standards
-   （+ 回写 starter 仓库，push 由管理员执行）；
+   （发布/同步到远端由管理员自行决定执行）；
 4. **版本化**：被改文件版本号 +1（见文末变更记录）；
 5. **变更记录**：记入文件内变更记录表；含示例的条款必须同步更新示例
    （作为批准环节校验项）。
@@ -286,3 +300,10 @@
 | 日期 | 版本 | 变更 | 批准 |
 |---|---|---|---|
 | 2026-08-27 | v1.0 | 首次版本化：调研阶段（§7.6）/目标书修订分级/决策↔计划书联动/脚本化+日志分级/成本治理/git 双模式/里程碑复盘/规则预算/修订流程（§9）/优先级两档制/结论分层强制范围/询价限官方/门禁表示例/切会话分工/commit 规范/上下文检查/敏感信息（standards） | 用户 |
+| 2026-08-27 | v1.1 | git 双模式改为预留文件填写机制（process/project/configs/git-remote.md，会话中不留痕）；standards 同步 | 用户 |
+| 2026-08-27 | v1.2 | 配置预留文件升级 TOML 两级：project-config.toml（项目）+ user-config.toml（组）；配置读取优先级=项目→组→卡片；空值逻辑；standards 同步 | 用户 |
+| 2026-08-27 | v1.3 | 组级 user-config.toml 移至 shared-standards/（.gitignore 排除）；模板 user-config.template.toml 入库 | 用户 |
+| 2026-08-27 | v1.4 | §4 新增「禁止本地绝对路径」：文档/脚本一律相对路径或中性描述 | 用户 |
+| 2026-08-27 | v1.5 | §9 实施步骤措辞弱化：移除"回写 starter 仓库"通用表述（会话限定行为，非项目常驻义务），改为"发布/同步由管理员自行决定" | 用户 |
+| 2026-08-27 | v1.6 | §6 用户配置条款补「首次配置引导」：复制模板（去 .template）为实例并填写 | 用户 |
+| 2026-08-27 | v1.7 | §5 文件职责表补 templates 模板区（方案丙落地：docs 实例区 + templates 模板区） | 用户 |

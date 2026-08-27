@@ -8,8 +8,8 @@
 - 位置：`../shared-standards/AGENTS.md`（本工作区之外，**只读引用**）
 - 本文件夹由 `project-template` 复制而来：新项目 = 复制本文件夹到 project-group 下
   并改名，以**独立工作区**在 DSH 打开；`../shared-standards/` 相对路径自动成立。
-- 优先级：项目组级规范中的 TOP 规则为最高优先级；本文件只做本项目补充，
-  冲突时以项目组级规范为准。
+- 优先级（两档制）：项目组级 TOP 规则为最高优先级、**不可覆盖**；其余组级条款为
+  默认值，本项目覆盖时须在本文件 §2 显式写明理由；冲突时以项目组级规范为准。
 - 更新项目组级规范：本工作区无写入权限（workspace-write 只覆盖本工作区）；
   需要更新时走**提权通道**——对越界写操作申请一次性权限并说明理由，
   经用户批准后执行；日常使用一律只读，不合并目录、不复制双份。
@@ -39,11 +39,12 @@
 | 类别 | 目录 | 语义 | 子结构 |
 |---|---|---|---|
 | 一、输入素材 | `inputs/` | 项目获得的外部材料 | `user/`（用户提供：`materials/` 资源、`tools/` 工具）；`ai/`（AI 调研：`reports/` 报告、`data/` 数据）——均按文件类型/内容分组 |
-| 二、过程工程 | `process/` | 项目进行中的工程与文档 | `tmp/`（临时垃圾文件）；`project/`（本项目正式工程：`scripts/`、`configs/`）；`docs/`（AI 工作进展文档） |
+| 二、过程工程 | `process/` | 项目进行中的工程与文档 | `tmp/`（临时垃圾文件）；`project/`（正式工程：`scripts/`、`configs/`）；`docs/`（文档**实例区**）；`templates/`（文档**模板区**） |
 | 三、输出产物 | `outputs/` | 交付与沉淀成果 | 按产物类型分组：`knowledge/`、`keyframes/`、`video/`、`models/`……新增类型先登记再建目录 |
 
 - `process/tmp/`：可随时清空；归档/打包时整体剔除。
-- `*-template.md` 永为模板，实例另存为不带 `-template` 的同名前缀文件。
+- `process/templates/` 为文档**模板区**（`<名>.template.md` 永为模板）；`process/docs/` 为
+  **实例区**（实例骨架已预置，填内容参考 templates/ 对应模板，可随时复制覆盖重置）。
 - 合规与工程规范（standards.md）在项目组级：`../shared-standards/standards.md`。
 
 ## 4. 状态
@@ -61,3 +62,13 @@
 | 工作日志 | `process/docs/work-log.md` |
 | **★施工文档（交付版）** | `process/docs/construction.md` |
 | 决策记录 | `process/docs/decisions.md` |
+| 文档模板区（格式参考） | `process/templates/` |
+| 规约修订提案 | `process/docs/spec-proposals/` |
+| 项目配置（用户填） | `process/project/configs/project-config.toml` |
+
+## 6. 规约反作用与文档初始化
+
+- **反作用（修改规约）**：要分析/完善项目规约时，开一个**专用会话**（先读规约 → 分析完整性 →
+  讨论确认 → 按组级 AGENTS.md §9 流程落地）；日常干活会话不混入规约修改。
+- **文档初始化**：`process/templates/` 为模板区（含格式示例）；`process/docs/` 实例骨架已预置，
+  填内容时参考对应模板；需要重置可复制模板（去掉 `.template` 后缀）覆盖实例。

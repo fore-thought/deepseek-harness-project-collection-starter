@@ -1,0 +1,5 @@
+# 组级（用户级）配置模板 —— 复制为 user-config.toml 后由用户填写（user-config.toml 不入库）
+# 规则：组级 AGENTS.md §6「配置读取优先级」——项目配置优先，未配置读本文件，再没有则卡片提示用户。
+[git]
+user_name = "<你的 git 用户名>"
+user_email = "<你的 git 邮箱>"

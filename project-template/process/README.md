@@ -9,12 +9,14 @@
 - `project/`：本项目正式工程（工程实现）
   - `project/scripts/`：脚本
   - `project/configs/`：配置
-- `docs/`：AI 工作进展相关文档
-  - `HANDOFF.md`（会话交接）/ `work-log.md`（工作日志，含失败过程）/
-    `decisions.md`（决策）/ `assumptions.md`（假设）/
+- `docs/`：文档**实例区**（只放实例文件）
+  - `HANDOFF.md`（会话交接，含用户职责表）/ `work-log.md`（工作日志，全路径）/
+    `decisions.md`（决策 ADR）/ `assumptions.md`（假设，含验证时机）/
     `measurements.md`（实测）/ `construction.md`（施工，只记成功步骤）
-  - `docs/plans/`：`goal-spec.md`（目标书）/ `plan.md`（计划书）；
-    `*-template.md` 永为模板，实例另存不带 `-template`
+  - `docs/plans/`：`goal-spec.md`（目标书）/ `plan.md`（计划书）
+  - `docs/README.md`：本区索引与初始化说明
+- `templates/`：文档**模板区**（`<名>.template.md`，含格式示例，永不改内容；
+  实例 = 复制到 docs/ 去掉 `.template` 后缀）
 
 ## 规则
 

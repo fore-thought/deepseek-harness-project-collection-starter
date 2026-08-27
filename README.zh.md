@@ -16,9 +16,12 @@ deepseek-harness-project-collection-starter/
 ├── shared-standards/
 │   ├── AGENTS.md
 │   ├── README.md
-│   └── standards.md
+│   ├── standards.md
+│   ├── user-config.template.toml
+│   └── .gitignore
 ├── project-template/
 │   ├── AGENTS.md
+│   ├── .gitignore
 │   ├── inputs/
 │   │   ├── README.md
 │   │   ├── ai/
@@ -43,7 +46,8 @@ deepseek-harness-project-collection-starter/
 │   │       └── README.md
 │   └── process/
 │       ├── README.md
-│       ├── docs/
+│       ├── docs/                     # 实例区
+│       │   ├── README.md
 │       │   ├── assumptions.md
 │       │   ├── construction.md
 │       │   ├── decisions.md
@@ -51,14 +55,26 @@ deepseek-harness-project-collection-starter/
 │       │   ├── measurements.md
 │       │   ├── work-log.md
 │       │   └── plans/
-│       │       ├── goal-spec-template.md
-│       │       └── plan-template.md
+│       │       ├── goal-spec.md
+│       │       └── plan.md
+│       ├── templates/                # 模板区
+│       │   ├── assumptions.template.md
+│       │   ├── construction.template.md
+│       │   ├── decisions.template.md
+│       │   ├── HANDOFF.template.md
+│       │   ├── measurements.template.md
+│       │   ├── work-log.template.md
+│       │   └── plans/
+│       │       ├── goal-spec.template.md
+│       │       └── plan.template.md
 │       ├── project/
 │       │   ├── README.md
 │       │   ├── configs/
-│       │   │   └── README.md
+│       │   │   ├── README.md
+│       │   │   └── project-config.template.toml
 │       │   └── scripts/
-│       │       └── README.md
+│       │       ├── README.md
+│       │       └── ctx.cjs
 │       └── tmp/
 │           └── README.md
 └── README.md
@@ -78,6 +94,10 @@ deepseek-harness-project-collection-starter/
 
 4. 新建会话窗口，正常聊天即可
 
+5. 首次使用：复制 `shared-standards/user-config.template.toml` 为 `user-config.toml` 并填写 git 身份；
+   项目级同理（`project-config.template.toml` → `project-config.toml`）。不填则走默认/本地模式
+   （见 `shared-standards/AGENTS.md` §6）。
+
 ### 如何更好的管理项目？不管理！
 
 - 模板项目自带 `AGENTS.md` ，项目会话窗口会自动加载。
@@ -94,4 +114,5 @@ deepseek-harness-project-collection-starter/
 
   这段话**可直接复制**使用。(你愿意的话，用自己的话说也没事，模板 markdown 其实已经做了这段话的行为约束了，这里只是二次增强。**关键词** 仅仅是 **交接文档** 与 **新会话** 。)
 
+- 想分析/完善项目规约？开一个**专用会话**：先读规约 → 分析完整性 → 讨论确认 → 按 `shared-standards/AGENTS.md` §9 流程落地；日常干活会话不混入规约修改。
 - 剩下的不明白的，或者好奇原理的，就看看目录结构及目录下 markdown 文档吧。
