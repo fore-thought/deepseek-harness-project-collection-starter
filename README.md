@@ -115,3 +115,7 @@ deepseek-harness-project-collection-starter/
 
 - To review or improve the project rules (the "reflection" workflow), open a **dedicated session**: read the rules first → analyze completeness → discuss & confirm → land changes per `shared-standards/AGENTS.md` §9. Don't mix rule changes into regular work sessions.
 - For anything else you're unsure about or curious about the underlying principles, just take a look at the directory structure and the markdown documents under it.
+
+### Roadmap
+
+- [ ] Skillize the project and package it as a dsh plugin.

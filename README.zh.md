@@ -117,3 +117,7 @@ deepseek-harness-project-collection-starter/
 
 - 想分析/完善项目规约？开一个**专用会话**：先读规约 → 分析完整性 → 讨论确认 → 按 `shared-standards/AGENTS.md` §9 流程落地；日常干活会话不混入规约修改。
 - 剩下的不明白的，或者好奇原理的，就看看目录结构及目录下 markdown 文档吧。
+
+### 后续规划
+
+- [ ] 将项目 Skill 化，并打包为 dsh 插件。
