@@ -3,3 +3,10 @@
 [git]
 user_name = "<你的 git 用户名>"
 user_email = "<你的 git 邮箱>"
+
+[runtime]
+# 本机运行系统（机器级默认，全组项目共用）→ 决定对话回复中给用户的路径格式
+# （组级 AGENTS.md §0）。首个会话由代理判定 + 卡片确认后填写，此后直接读档不再判断；
+# 个别项目从不同系统入口打开时，在项目 project-config.toml 的 [runtime] 覆盖。
+# 可选值：windows = 盘符+反斜杠（C:\...）；posix = 斜杠路径（/mnt/... 等）
+path_style = ""

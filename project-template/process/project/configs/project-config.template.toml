@@ -8,3 +8,10 @@ env_file = "configs/.env"      # 密钥文件路径（键名清单见 env.templa
 [git]
 # 留空 = 本地模式；填写后代理执行 git remote add origin <url>
 remote_url = ""
+
+[runtime]
+# 可选覆盖：仅当本项目从与机器默认不同的系统入口打开（如经 WSL/Linux）时填写；
+# 留空 = 沿用组级 user-config.toml 的 [runtime] path_style（机器级默认）。
+# 判定/确认一次后存盘，此后直接读档、不再逐次判断（组级 AGENTS.md §0）。
+# 可选值：windows = 盘符+反斜杠（C:\...）；posix = 斜杠路径（/mnt/... 等）
+path_style = ""
