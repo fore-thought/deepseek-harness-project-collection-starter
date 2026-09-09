@@ -78,6 +78,7 @@ deepseek-harness-project-collection-starter/
 │       │       └── ctx.cjs
 │       └── tmp/
 │           └── README.md
+├── LICENSE
 └── README.md
 ```
 
@@ -121,3 +122,9 @@ deepseek-harness-project-collection-starter/
 ### 后续规划
 
 - [ ] 将项目 Skill 化，并打包为 dsh 插件。
+
+### 许可证
+
+本仓库基于 [MIT License](LICENSE) 开源发布。
+
+> 随便 fork、随便改名、随便商用——玩得开心就好！你用本模板创建的项目完全归你自己：放进 `inputs/`、`outputs/` 和你自己 `process/` 文档里的一切内容，都不受本仓库许可证约束。

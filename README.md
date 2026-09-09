@@ -78,6 +78,7 @@ deepseek-harness-project-collection-starter/
 │       │       └── ctx.cjs
 │       └── tmp/
 │           └── README.md
+├── LICENSE
 └── README.md
 ```
 
@@ -119,3 +120,9 @@ deepseek-harness-project-collection-starter/
 ### Roadmap
 
 - [ ] Skillize the project and package it as a dsh plugin.
+
+### License
+
+This repository is released under the [MIT License](LICENSE).
+
+> Fork it, rename it, use it commercially — go have fun! Projects you create from this template are entirely yours; nothing you put in `inputs/`, `outputs/`, or your own `process/` documents is bound by this license.
