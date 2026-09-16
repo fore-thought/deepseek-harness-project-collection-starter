@@ -1,7 +1,10 @@
 # 会话交接（HANDOFF）
 
-> 新会话第一步：①读本文件 ②读根级 AGENTS.md TOP 规则 ③读 process/docs/work-log.md
-> ④读 process/docs/decisions.md ⑤按"下一步"执行（先过四道闸，见项目组级规范 §7）。
+> ⚠️ 本文件是**单值文件**：只保留当前接续点，每次交接覆盖重写。同一工作目录同时只能有
+> 一个会话写它（组级 AGENTS.md §6「并行前提」）。
+> 新会话第一步（与组级 §7.4 接续闸一致）：①读本文件 ②读根级 AGENTS.md TOP 规则
+> ③读 work-log 尾 10 行 + decisions 索引 ④读 plans/plan.md 当前段门禁表
+> ⑤按"下一步"执行（过闸缺凭证即停）。
 > 格式参考 `process/templates/HANDOFF.template.md`。
 
 ## 1. 项目定位（一句话）
@@ -26,11 +29,11 @@
 
 ## 6. 规则提醒
 
-- 四道闸门禁（立项/规划/执行/接续）+ 调研阶段（可选）见项目组级规范
-  ../../../shared-standards/AGENTS.md（TOP 规则 + §7）：过闸缺凭证即停
+- 四道闸门禁（立项/规划/执行/接续）+ 调研阶段（可选）+ 结项闸见项目组级规范
+  `../shared-standards/AGENTS.md`（TOP 规则 + §7）：过闸缺凭证即停
 - 大文件下载一律用户在主机执行（代理给下载表：网址+存储位置）
 - 请示用户优先提问卡片；数字/阈值必标 [MEASURED]/[ESTIMATED]/[UNKNOWN]
-- 里程碑 → ①决策回写 ②复盘 ③总结 → 推送远端
+- 里程碑 → ①决策回写 ②复盘 ③总结推送 → ④计划余量检查（计划耗尽时卡片提议续编计划或结项）
 - 每次 git 操作三问：①已设远端？②仅本地？③已推送？（模式见用户职责表）
 
 ## 7. 用户职责表
@@ -40,8 +43,7 @@
 | 职责 | 说明 | 状态 |
 |---|---|---|
 | 账号注册 | 由用户负责 | 待办 |
-| git 远端/身份 | 在 process/project/configs/project-config.toml（项目）与
-  ../shared-standards/user-config.toml（组）填写；优先级=项目→组→卡片；会话中不留痕 | 待填写 |
-| 平台密钥 | 填 process/project/configs/.env（键名见 env.template）；toml 不列密钥（见组级 standards §2） | 待填写 |
+| git 远端/身份 | 在 `process/project/configs/project-config.toml`（项目）与 `../shared-standards/user-config.toml`（组）填写；优先级=项目→组→卡片；会话中不留痕 | 待填写 |
+| 平台密钥 | 填 `process/project/configs/.env`（键名见 `.env.template`，键名按所选平台官方文档定）；toml 不列密钥（见组级 standards §2） | 待填写 |
 | 大文件下载 | 按代理下载表（网址+存储位置）在主机执行 | — |
 | 决策批准 | 提问卡片拍板（含回填清单、计划书批准） | 常态 |

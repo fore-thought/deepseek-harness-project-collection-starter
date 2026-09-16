@@ -13,6 +13,8 @@ dist/
 Thumbs.db
 
 # 敏感信息（绝不入库，见组级 standards.md §2）
+# 注意：`*.env` 只匹配以 .env 结尾者，故 .env.template 不受影响、可入库；
+# 真实密钥文件为 .env（被本条匹配）。写法用「目录/文件」精确路径，避免裸名跨深度误伤。
 *.env
 secrets/
 credentials/

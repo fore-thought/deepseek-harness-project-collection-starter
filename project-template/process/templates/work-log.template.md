@@ -4,6 +4,7 @@
 > （去掉 `.template` 后缀）后填写。
 > 每完成一个实质进展就追加一条。
 > 格式：日期 | 事项 | 结果/产出 | 备注。
+> 读取方式（组级 AGENTS.md §5）：**尾 N 行**——接续闸取尾 10 行；**只追加、不重写、不重排**。
 > 关联：process/docs/measurements.md（实测数据）/ process/docs/decisions.md（决策）/
 > process/docs/assumptions.md（假设）。
 > ⚠️ 本文件为**全路径日志**（含反复修改/失败），与 process/docs/construction.md

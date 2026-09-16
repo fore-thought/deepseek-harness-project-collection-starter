@@ -1,26 +1,26 @@
 ## deepseek-harness-project-collection-starter
 
 <div align="center">
-  <a href="README.md">English</a> | 
-  <a href="README.zh.md">简体中文</a>
+  <a href="README.en.md">English</a> | 
+  <a href="README.md">简体中文</a>
 </div>
 
-> This is a **best practice** for **managing** the *DeepSeek Harness* **project collection**. You can directly **fork** the entire repository, **rename** the `project-template` folder to your own workspace name, **open** the workspace, and start having **fun** with DeepSeek Harness.
+> 这是一个关于 *DeepSeek Harness* **项目集合管理** 的 **最佳实践**。你可以直接 **克隆** 整个仓库，将 `project-template` 文件夹 **重命名** 为你自己的工作区名称，然后 **打开** 工作区，开始与 *DeepSeek Harness* 一起 **愉快地玩耍** 吧。
 
-> ⭐ **Star this repo** — we're committed to long-term maintenance and regular updates!
+> ⭐ **点个 Star 吧** —— 我们将长期维护并持续更新！
 
-### Directory structure
+### 目录结构
 
 ```markdown
 deepseek-harness-project-collection-starter/
-├── shared-standards/
+├── shared-standards/              # 项目组级公共规范（各项目只读引用，不随项目复制）
 │   ├── AGENTS.md
 │   ├── README.md
 │   ├── standards.md
-│   ├── user-config.template.toml
+│   ├── user-config.toml.template
 │   └── .gitignore
-├── project-template/
-│   ├── AGENTS.md
+├── project-template/              # 复制改名后即一个项目工作区
+│   ├── AGENTS.md                  # 唯一根级文档：项目规范 + 三类目录索引
 │   ├── .gitignore
 │   ├── inputs/
 │   │   ├── README.md
@@ -35,18 +35,12 @@ deepseek-harness-project-collection-starter/
 │   │       └── tools/
 │   │           └── README.md
 │   ├── outputs/
-│   │   ├── README.md
-│   │   ├── keyframes/
-│   │   │   └── README.md
-│   │   ├── knowledge/
-│   │   │   └── README.md
-│   │   ├── models/
-│   │   │   └── README.md
-│   │   └── video/
+│   │   ├── README.md              # 产物类型不预置，由项目自行登记
+│   │   └── knowledge/
 │   │       └── README.md
 │   └── process/
 │       ├── README.md
-│       ├── docs/                     # instance area
+│       ├── docs/                  # 实例区
 │       │   ├── README.md
 │       │   ├── assumptions.md
 │       │   ├── construction.md
@@ -57,7 +51,8 @@ deepseek-harness-project-collection-starter/
 │       │   └── plans/
 │       │       ├── goal-spec.md
 │       │       └── plan.md
-│       ├── templates/                # template area
+│       │       # spec-proposals/ 为规约修订成文提案，首次使用时创建
+│       ├── templates/             # 模板区
 │       │   ├── assumptions.template.md
 │       │   ├── construction.template.md
 │       │   ├── decisions.template.md
@@ -71,58 +66,64 @@ deepseek-harness-project-collection-starter/
 │       │   ├── README.md
 │       │   ├── configs/
 │       │   │   ├── README.md
-│       │   │   ├── project-config.template.toml
-│       │   │   └── env.template
+│       │   │   ├── project-config.toml.template
+│       │   │   └── .env.template
 │       │   └── scripts/
 │       │       ├── README.md
 │       │       └── ctx.cjs
 │       └── tmp/
 │           └── README.md
 ├── LICENSE
-└── README.md
+├── README.md                      # 本文件（中文）
+└── README.en.md                   # 英文版
 ```
 
-### How to Use
+> 命名规则：模板名 = 实例名 + `.template`，去掉后缀即实例名
+> （如 `plan.template.md` → `plan.md`、`.env.template` → `.env`）。
 
-1. Clone the entire project and make sure the shared-standards folder exists. (After that, users won't need to touch it, and agents should rarely modify it either. Since it contains global project standards, any changes to it would require elevated privileges.)
+### 使用方法
 
-   > You can also rename `deepseek-harness-project-collection-starter` to something you prefer, e.g., `my-dsh-projects`.
+1. 整个项目克隆下来，确保 `shared-standards` 文件夹存在（之后用户不再动它，agent 也应当很少动它，而动它因为是全局项目规范，所以会需要提权修改）。
 
-2. Rename `project-template` to the name of the workspace you want, e.g., `big-fat-fish`.
+   > `deepseek-harness-project-collection-starter` 这个名字不喜欢你也可以改，比如： `my-dsh-projects` 。
 
-3. In the already launched *DeepSeek Harness* interface, open the workspace you just renamed.
+2. 将 `project-template` 改为你希望的工作区的名字，比如： `big-fat-fish` 。
 
-   > For example: open workspace `big-fat-fish`
+3. 在已经启动的 *DeepSeek Harness* 界面，打开刚改名的工作区。
 
-4. Create a new session window and chat as usual.
+   > 比如：打开工作区 `big-fat-fish`
 
-5. First-time setup: copy `shared-standards/user-config.template.toml` to `user-config.toml` and fill in your git identity; do the same at project level (`project-config.template.toml` → `project-config.toml`). If left unfilled, defaults/local mode apply (see `shared-standards/AGENTS.md` §6).
+4. 新建会话窗口，正常聊天即可
 
-### How to Better Manage Your Project? Don't!
+5. 首次使用：复制 `shared-standards/user-config.toml.template` 为 `user-config.toml` 并填写 git 身份；
+   项目级同理（`project-config.toml.template` → `project-config.toml`，密钥模板
+   `.env.template` → `.env`）。不填则走默认/本地模式（见 `shared-standards/AGENTS.md` §6）。
 
-- The template project comes with a built-in `AGENTS.md` file, which will be automatically loaded in the project session window.
+### 如何更好的管理项目？不管理！
 
-  > Thanks to this very feature of DeepSeek Harness — document-to-document referencing — all project-organizing work is arranged right at the start of the session, achieving automation without any code plugins needed.
+- 模板项目自带 `AGENTS.md` ，项目会话窗口会自动加载。
 
-- `AGENTS.md` automatically indexes the directory structure, so you don't need to maintain it manually.
+  > 正是凭借 deepseek harness 这一特性，文档引用文档，从而通过文档在会话的一开始就安排好整理项目的种种工作，从而在不装代码插件的情况下，实现自动化。
 
-  > *Let the BIG FAT FISH prove that she is not just a freeloader !*
+- `AGENTS.md` 里会自动索引目录结构，目录结构不用用户自己维护。
 
-- Suggestion: When the session **context** usage approaches or exceeds **60%**, generate a **handoff document** for a new session and continue your work in a **new session**. How to generate a handoff document for a new session? You can say this to `DeepSeek Harness` in the current session:
+  > *让大肥鱼证明一下她自己不是吃白饭的！*
 
-  > Let's pause here for now. Organize all the milestone achievements of this session, summarize the experience and knowledge gained, update relevant documents, and prepare a handoff document. Then commit the changes via git, and finally, prepare the first message I need to send in the next new session. We will continue the current work in that next new session.
+- 建议：在会话**上下文**提示接近或超过 **60%** 后，生成用于新会话的**交接文档**，并在**新会话**中继续工作。如何生成新会话交接文档？可以在当前会话和 `DeepSeek Harness` 说：
 
-  You can **copy and use** this message directly. (Feel free to use your own wording; the template's markdown already includes behavioral constraints for this message, but this serves as an extra reinforcement. The **key term** is simply **handoff document** and **new session**.)
+  > 本次会话暂时先到这里，整理一下本次会话的所有里程碑性成果，梳理会话中得到的经验和知识，更新相关文档，我们将在下一次新的会话中继续当前工作，准备好交接文档，并进行 git 提交，最后把我需要在下一次新的会话中发的第一句话整理好。
 
-- To review or improve the project rules (the "reflection" workflow), open a **dedicated session**: read the rules first → analyze completeness → discuss & confirm → land changes per `shared-standards/AGENTS.md` §9. Don't mix rule changes into regular work sessions.
-- For anything else you're unsure about or curious about the underlying principles, just take a look at the directory structure and the markdown documents under it.
+  这段话**可直接复制**使用。(你愿意的话，用自己的话说也没事，模板 markdown 其实已经做了这段话的行为约束了，这里只是二次增强。**关键词** 仅仅是 **交接文档** 与 **新会话** 。)
 
-### Roadmap
+- 想分析/完善项目规约？开一个**专用会话**：先读规约 → 分析完整性 → 讨论确认 → 按 `shared-standards/AGENTS.md` §9 流程落地；日常干活会话不混入规约修改。
+- 剩下的不明白的，或者好奇原理的，就看看目录结构及目录下 markdown 文档吧。
 
-- [ ] Skillize the project and package it as a dsh plugin.
+### 后续规划
 
-### License
+- [ ] 将项目 Skill 化，并打包为 dsh 插件。
 
-This repository is released under the [MIT License](LICENSE).
+### 许可证
 
-> Fork it, rename it, use it commercially — go have fun! Projects you create from this template are entirely yours; nothing you put in `inputs/`, `outputs/`, or your own `process/` documents is bound by this license.
+本仓库基于 [MIT License](LICENSE) 开源发布。
+
+> 随便 fork、随便改名、随便商用——玩得开心就好！你用本模板创建的项目完全归你自己：放进 `inputs/`、`outputs/` 和你自己 `process/` 文档里的一切内容，都不受本仓库许可证约束。

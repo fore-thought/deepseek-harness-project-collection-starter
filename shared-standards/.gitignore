@@ -1,5 +1,6 @@
-# 用户配置（真实文件，不入库；模板 user-config.template.toml 入库）
-user-config.toml
+# 用户配置（真实文件，不入库；模板 user-config.toml.template 入库）
+# 写法用「目录/文件」精确路径：裸名会匹配任意深度，将来别处再建同名文件会静默不入库。
+shared-standards/user-config.toml
 
 # 敏感信息（防御性：组级目录原则上不放密钥；防误建误推泄露）
 *.env

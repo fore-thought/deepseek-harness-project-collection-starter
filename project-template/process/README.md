@@ -13,8 +13,9 @@
   - `HANDOFF.md`（会话交接，含用户职责表）/ `work-log.md`（工作日志，全路径）/
     `decisions.md`（决策 ADR）/ `assumptions.md`（假设，含验证时机）/
     `measurements.md`（实测）/ `construction.md`（施工，只记成功步骤）
-  - `docs/plans/`：`goal-spec.md`（目标书）/ `plan.md`（计划书）
-  - `docs/README.md`：本区索引与初始化说明
+  - `docs/plans/`：`goal-spec.md`（目标书）/ `plan.md`（计划书与门禁表）
+  - `docs/spec-proposals/`：规约修订成文提案（首次使用时创建）
+  - `docs/README.md`：本区索引、初始化说明与**读取方式归类**
 - `templates/`：文档**模板区**（`<名>.template.md`，含格式示例，永不改内容；
   实例 = 复制到 docs/ 去掉 `.template` 后缀）
 

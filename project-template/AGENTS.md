@@ -2,10 +2,13 @@
 
 > 项目级规范 + 项目组级规范引用。**开始任何任务前：先读本文件，再读项目组级规范。**
 > 本文件是**唯一根级文档**，同时担任工作区索引：三大类目录索引见 §3。
+> 版本: v1.0 ｜ 最近修订: 2026-09-16 ｜ 变更记录见文末。
 
 ## 0. 项目组级规范（依赖声明）
 
-- 位置：`../shared-standards/AGENTS.md`（本工作区之外，**只读引用**）
+- 位置：`../shared-standards/AGENTS.md`（与本工作区同级、在工作区之外，**只读引用**）。
+- 该文件**不在本工作区内**，因此 DSH 的会话指令注入不会包含它——本文件只是指向它，
+  由代理按需读取；引用一律相对路径，不复制正文（见 §6 指针化条款）。
 - 本文件夹由 `project-template` 复制而来：新项目 = 复制本文件夹到 project-group 下
   并改名，以**独立工作区**在 DSH 打开；`../shared-standards/` 相对路径自动成立。
 - 优先级（两档制）：项目组级 TOP 规则为最高优先级、**不可覆盖**；其余组级条款为
@@ -39,8 +42,8 @@
 | 类别 | 目录 | 语义 | 子结构 |
 |---|---|---|---|
 | 一、输入素材 | `inputs/` | 项目获得的外部材料 | `user/`（用户提供：`materials/` 资源、`tools/` 工具）；`ai/`（AI 调研：`reports/` 报告、`data/` 数据）——均按文件类型/内容分组 |
-| 二、过程工程 | `process/` | 项目进行中的工程与文档 | `tmp/`（临时垃圾文件）；`project/`（正式工程：`scripts/`、`configs/`）；`docs/`（文档**实例区**）；`templates/`（文档**模板区**） |
-| 三、输出产物 | `outputs/` | 交付与沉淀成果 | 按产物类型分组：`knowledge/`、`keyframes/`、`video/`、`models/`……新增类型先登记再建目录 |
+| 二、过程工程 | `process/` | 项目进行中的工程与文档 | `tmp/`（临时垃圾文件）；`project/`（正式工程：`scripts/`、`configs/`）；`docs/`（文档**实例区**，含 `docs/plans/` 目标书与计划书、`docs/spec-proposals/` 规约提案）；`templates/`（文档**模板区**，含 `templates/plans/`） |
+| 三、输出产物 | `outputs/` | 交付与沉淀成果 | 产物类型由本项目自定：**先在本区 README 登记一行，再建同名子目录**；不预置类型 |
 
 - `process/tmp/`：可随时清空；归档/打包时整体剔除。
 - `process/templates/` 为文档**模板区**（`<名>.template.md` 永为模板）；`process/docs/` 为
@@ -62,6 +65,10 @@
 | 工作日志 | `process/docs/work-log.md` |
 | **★施工文档（交付版）** | `process/docs/construction.md` |
 | 决策记录 | `process/docs/decisions.md` |
+| **目标定义书** | `process/docs/plans/goal-spec.md` |
+| **计划书与门禁表** | `process/docs/plans/plan.md` |
+| 假设登记 | `process/docs/assumptions.md` |
+| 实测记录 | `process/docs/measurements.md` |
 | 文档模板区（格式参考） | `process/templates/` |
 | 规约修订提案 | `process/docs/spec-proposals/` |
 | 项目配置（用户填） | `process/project/configs/project-config.toml` |
@@ -72,3 +79,17 @@
   讨论确认 → 按组级 AGENTS.md §9 流程落地）；日常干活会话不混入规约修改。
 - **文档初始化**：`process/templates/` 为模板区（含格式示例）；`process/docs/` 实例骨架已预置，
   填内容时参考对应模板；需要重置可复制模板（去掉 `.template` 后缀）覆盖实例。
+- **本文件体量与指针化**：本文件会被 DSH 每个会话开局注入（连同项目根到工作目录沿途的
+  全部 `AGENTS.md`，合计上限 65536 字节）；超出时先整体丢弃较宽的文件、最后才截断最具体的
+  文件。因此本文件只做**索引与指针**：项目特有规则需要展开时，正文写进 `process/docs/`
+  下的独立文档，此处只留一行指向它；**禁止把组级规范正文复制进来**（第二份副本即分叉
+  起点，且会占满注入额度）。参考上限：20 KB 以内。
+- **并行前提**：同一工作目录同一时刻只有一个活跃写入会话（`git checkout` 按目录生效、
+  协作文档为追加或覆盖写）；需要并行时，先在计划书的单元定义里写明该单元预期触碰的
+  文件与目录集合，文件集不相交才可并行（见组级 AGENTS.md §6）。
+
+## 变更记录
+
+| 日期 | 版本 | 变更 | 批准 |
+|---|---|---|---|
+| 2026-09-16 | v1.0 | 首次版本化：补版本头与变更记录；§0 修正相对路径描述并注明组级规范不参与会话注入；§3 补 `docs/plans/`、`docs/spec-proposals/`、`templates/plans/` 并改为产物类型不预置；§5 补目标书、计划书、假设、实测四行；§6 新增本文件体量与指针化、并行前提 | 用户 |

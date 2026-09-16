@@ -6,3 +6,19 @@
 > （去掉 `.template` 后缀覆盖实例）。
 > `spec-proposals/`（规约修订成文提案）：**首次使用时创建**（见组级 AGENTS.md §9）。
 > 新增文档：先登记到根级 AGENTS.md（或对应 README 索引），再建实例。
+
+## 必读文档的读取方式（新增文档先归类）
+
+> 通则见组级 AGENTS.md §5；此处只列实例区各文件的归类。
+
+| 读取类别 | 本区文件 |
+|---|---|
+| 覆盖写（有界） | `HANDOFF.md`、`plans/goal-spec.md` |
+| 尾 N 行 | `work-log.md`（接续闸取尾 10 行） |
+| 索引 + 按需展开 | `decisions.md`（接续闸只读索引区） |
+| 分段读 | `plans/plan.md`（只读当前段门禁表） |
+| 按字段筛读 | `assumptions.md`（先读「近期可实测」与状态未定条目） |
+| 按步骤清单执行 | `construction.md`（按前置条件/命令/判据逐条执行） |
+
+> 追加类文档（work-log / decisions / assumptions / measurements）：**只追加、不重写、
+> 不重排、不整理格式**，保证多会话合并时按时间戳即可解决冲突。
