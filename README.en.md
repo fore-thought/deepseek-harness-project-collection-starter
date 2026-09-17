@@ -19,7 +19,7 @@ deepseek-harness-project-collection-starter/
 │   ├── standards.md
 │   ├── user-config.toml.template
 │   └── .gitignore
-├── presets/                       # source material and install recipe for the three role presets (optional)
+├── presets/                       # the three role presets — copy a folder into the DSH preset directory (optional)
 ├── project-template/              # rename this to create one project workspace
 │   ├── AGENTS.md                  # the only root document: project rules + three-category index
 │   ├── .gitignore

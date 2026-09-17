@@ -1,30 +1,43 @@
-# presets（角色预设）· 源料与安装配方
+# presets（角色预设）
 
-> 本目录**不是**可直接挂载的预设目录——它是三个角色预设的**源料**与**安装配方**。
-> 装好之后预设落在 `<DSH_HOME>/.agent-presets/<id>/`，**在仓库之外**，所以只能由你在自己
-> 机器上装一次。角色表、写权与流水线纪律的**唯一真源**是
+> 本目录下**每个角色一个文件夹，文件夹本身就是可直接安装的预设**：整份复制到
+> `<DSH_HOME>/.agent-presets/` 即可，不需要自己拼装任何文件。三个角色按需装，只装一个
+> 也完全可用。角色表、写权与流水线纪律的**唯一真源**是
 > `../shared-standards/pipeline-and-roles.md`；本目录只负责让"身份"进入系统提示词层。
 
-## 为什么不直接发三份完整的组合文件
+## 安装（每个角色一次）
 
-因为它会**过期**。预设的组合文件是标准模式的快照，而随 DSH 升级标准模式会变；发一份冻结的
-快照，用户装到的就是旧配置。改成"复制你当前的标准模式 + 只改 persona 一段"之后，
-装出来的预设永远匹配你手上的 DSH 版本。
+把角色文件夹整个复制过去：
 
-## 三步安装（每个角色一次）
-
-1. 在 DSH 的「智能体预设 / 预设」界面里**复制「标准模式」**，id 与显示名按下表填写。
-2. 打开复制出来的 `agent.cordis.yml`，把 `- id: persona` 起的那一整段**替换**为同目录
-   `persona.yml` 的内容（直接用文本编辑器粘贴，注意保持缩进）。
-3. 保存。新建会话时选择器里就会出现这个角色预设。
-
-| 显示名 | 预设 id（= 目录名） | 替换用的文件 |
+| 角色 | 复制这个文件夹 | 装到这里 |
 |---|---|---|
-| 制作人 | `producer` | `producer/persona.yml` |
-| 实现者 | `implementer` | `implementer/persona.yml` |
-| 验收员 | `verifier` | `verifier/persona.yml` |
+| 制作人 | `presets/producer/` | `<DSH_HOME>/.agent-presets/producer/` |
+| 实现者 | `presets/implementer/` | `<DSH_HOME>/.agent-presets/implementer/` |
+| 验收员 | `presets/verifier/` | `<DSH_HOME>/.agent-presets/verifier/` |
 
-显示名与描述见各目录的 `preset.yml`（复制时若界面允许填，就照它填）。
+- `<DSH_HOME>` 默认是 `~/.dsh`（Windows 通常是 `C:\Users\<你>\.dsh`）；DSH 界面上
+  「打开预设目录」一类的入口指向的就是它。
+- 复制完不用重启：新建会话时，选择器里就会出现对应的显示名。
+
+每个文件夹里只有两个文件：
+
+- `agent.cordis.yml`：完整组合（由某个版本的 DSH 标准模式 + 本角色 persona 生成）；
+- `preset.yml`：显示名与描述。
+
+## 与 DSH 标准模式保持一致，是本仓库的维护责任
+
+`agent.cordis.yml` 派生自**某个版本**的标准模式，而标准模式会随 DSH 升级变化（新增或改名
+工具行、改默认值、动配置）。升级后重新生成这三份，只有一步不同：**把新的标准模式组合覆盖
+进来，再把本角色的 `- id: persona` 段贴回去**——
+
+1. 用当前 DSH 自带的标准模式组合（预设目录里的 `standard/agent.cordis.yml`）替换
+   `agent.cordis.yml` 的正文；
+2. 从 `git show HEAD~1:presets/<角色>/agent.cordis.yml` 取出该角色的 `- id: persona` 段
+   （从 `- id: persona` 到 `- id: agent-instructions` 之前），覆盖回同样的位置；
+3. 三个角色都做完后校验一次：装到 `<DSH_HOME>/.agent-presets/` 下，新建会话能选到该显示名、
+   且能正常开局。
+
+三份组合与标准模式的差异**只有 persona 这一段**，这是校验时最好用的判据。
 
 ## 为什么基于标准模式，不基于 PTC 模式
 
@@ -40,20 +53,15 @@
    text plus one transport schema rather than promising a universal reduction`——固定开销是
    换；真正的节省在 `every other intermediate result stays out of the conversation`（历史增长）。
 
-**想要 PTC 的节省**：在你复制出来的组合里做三处改动——加一行
-`- id: tool-presentation` / `name: '@deepseek-ai/dsh-agent-tool-presentation'` / `config.mode: ptc`，
-再把 `workflow-ptc` 与 `tool-workflow` 两行都置 `disabled: true`。改完先跑同一个任务，
-用界面上的上下文计量比一次占用，数字出来再决定要不要长期用。
+**想要 PTC 的节省**：复制装好之后，直接在 `<DSH_HOME>/.agent-presets/<角色>/agent.cordis.yml`
+里做三处改动——加一行 `- id: tool-presentation` / `name: '@deepseek-ai/dsh-agent-tool-presentation'` /
+`config.mode: ptc`，再把 `workflow-ptc` 与 `tool-workflow` 两行都置 `disabled: true`。改完先跑
+同一个任务，用界面上的上下文计量比一次占用，数字出来再决定要不要长期用。
 
 ## 两条纪律
 
-- **persona 不抄规范正文，只放指针。** 三个 `persona.yml` 里只有身份、写权路径与"按项目技能
-  执行"三样；流程与纪律的正文只在 `shared-standards/pipeline-and-roles.md`。抄副本必然漂移。
+- **persona 不抄规范正文，只放指针。** 三份 persona 里只有身份、写权路径与"按项目技能执行"
+  三样；流程与纪律的正文只在 `../shared-standards/pipeline-and-roles.md`。抄副本必然漂移。
 - **写权边界必须写在 persona 里，不能只写进技能。** 技能正文是工具结果，超过 8192 字会被裁成
   头 4096 + 尾 1024；写在**中段**的规矩会在长会话里消失，而 persona 是系统提示词的一部分，
   每个请求重发、永不被裁剪。
-
-## 升级后怎么办
-
-你复制的是**当时**的标准模式。DSH 升级之后，建议重新复制一次标准模式、再替换一次 persona
-（或只把 persona 那段贴回去）——这一步很轻，因为 persona 文本就在本目录里，改的只有它。

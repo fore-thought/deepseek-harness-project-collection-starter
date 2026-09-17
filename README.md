@@ -19,7 +19,7 @@ deepseek-harness-project-collection-starter/
 │   ├── standards.md
 │   ├── user-config.toml.template
 │   └── .gitignore
-├── presets/                       # 三个角色预设的源料与安装配方（可选能力）
+├── presets/                       # 三个角色预设（整份复制到 DSH 预设目录即装，可选能力）
 ├── project-template/              # 复制改名后即一个项目工作区
 │   ├── AGENTS.md                  # 唯一根级文档：项目规范 + 三类目录索引
 │   ├── .gitignore
