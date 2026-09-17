@@ -21,3 +21,7 @@ credentials/
 *.pem
 *token*
 process/project/configs/project-config.toml
+
+# 项目内 DSH 目录：技能必须入库，其余（DSH 可能写入的状态）不入库
+.dsh/*
+!.dsh/skills/

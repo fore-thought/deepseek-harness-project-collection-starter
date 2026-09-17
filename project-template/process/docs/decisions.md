@@ -2,6 +2,8 @@
 
 > ADR 风格：记录关键决策的背景/选项/选择与理由（格式参考 `process/templates/decisions.template.md`）。
 > 读取方式（组级 AGENTS.md §5）：**索引 + 按需展开**——接续闸只读索引区。
+> **写者**：制作人独占（多角色模式）；单会话模式下由该会话写。`DECISION-XXX` 序号也只由
+> 制作人分配，避免并发登记撞号（`../shared-standards/pipeline-and-roles.md` §5）。
 
 ## 索引区（接续闸只读到这里）
 

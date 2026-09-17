@@ -22,3 +22,14 @@
 
 > 追加类文档（work-log / decisions / assumptions / measurements）：**只追加、不重写、
 > 不重排、不整理格式**，保证多会话合并时按时间戳即可解决冲突。
+
+## 多角色模式新增的三处（可选能力）
+
+> 不用角色时这三处都可以空着；启用判据、角色表与写权范围见组级
+> `../shared-standards/pipeline-and-roles.md`。
+
+- `progress.md`：进度看板，多角色模式下由**制作人独占写**；单会话模式可留空。
+- `units/`：单元文件夹（传送带）——`brief.md`（制作人）/ `build*.md`（实现者）/
+  `accept.md`（验收员）。约定见 `units/README.md`。
+- `handoff/`：每角色一份接续索引（`producer/`、`implementer/`、`verifier/`）。
+  多角色模式下接续点在这里，`HANDOFF.md` 只做静态路由。约定见 `handoff/README.md`。

@@ -16,6 +16,9 @@
   - `docs/plans/`：`goal-spec.md`（目标书）/ `plan.md`（计划书与门禁表）
   - `docs/spec-proposals/`：规约修订成文提案（首次使用时创建）
   - `docs/README.md`：本区索引、初始化说明与**读取方式归类**
+  - `docs/progress.md`：进度看板（多角色模式下制作人独占写）
+  - `docs/units/`：单元文件夹（传送带：`brief`/`build`/`accept`）
+  - `docs/handoff/`：每角色一份接续索引（多角色模式）
 - `templates/`：文档**模板区**（`<名>.template.md`，含格式示例，永不改内容；
   实例 = 复制到 docs/ 去掉 `.template` 后缀）
 
