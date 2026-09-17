@@ -19,6 +19,7 @@ deepseek-harness-project-collection-starter/
 │   ├── standards.md
 │   ├── user-config.toml.template
 │   └── .gitignore
+├── presets/                       # 三个角色预设的源料与安装配方（可选能力）
 ├── project-template/              # 复制改名后即一个项目工作区
 │   ├── AGENTS.md                  # 唯一根级文档：项目规范 + 三类目录索引
 │   ├── .gitignore
@@ -87,7 +88,9 @@ deepseek-harness-project-collection-starter/
 
    > `deepseek-harness-project-collection-starter` 这个名字不喜欢你也可以改，比如： `my-dsh-projects` 。
 
-2. 将 `project-template` 改为你希望的工作区的名字，比如： `big-fat-fish` 。
+2. 将 `project-template` 改为你希望的工作区的名字，比如： `big-fat-fish` ，并**让这个文件夹自己成为一个 git 仓库**（在它里面 `git init`，或从你自己的空仓库 clone）。
+
+   > 这一步不能省。项目级配置里的 git 远端、以及项目内技能的发现，都假定**项目文件夹自己就是仓库根**。若把它留在集合仓库里不初始化：`git remote add` 会加到集合仓库上，项目内的 `.dsh/skills` 也不会被扫到。
 
 3. 在已经启动的 *DeepSeek Harness* 界面，打开刚改名的工作区。
 
@@ -121,6 +124,7 @@ deepseek-harness-project-collection-starter/
 ### 后续规划
 
 - [ ] 将项目 Skill 化，并打包为 dsh 插件。
+- [ ] 按项目类型提供起点包（如 code / document / research），从一个基础模板生成，避免多份模板分叉。
 
 ### 许可证
 

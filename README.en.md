@@ -19,6 +19,7 @@ deepseek-harness-project-collection-starter/
 │   ├── standards.md
 │   ├── user-config.toml.template
 │   └── .gitignore
+├── presets/                       # source material and install recipe for the three role presets (optional)
 ├── project-template/              # rename this to create one project workspace
 │   ├── AGENTS.md                  # the only root document: project rules + three-category index
 │   ├── .gitignore
@@ -87,7 +88,9 @@ deepseek-harness-project-collection-starter/
 
    > You can also rename `deepseek-harness-project-collection-starter` to something you prefer, e.g., `my-dsh-projects`.
 
-2. Rename `project-template` to the name of the workspace you want, e.g., `big-fat-fish`.
+2. Rename `project-template` to the name of the workspace you want, e.g., `big-fat-fish`, and **make that folder its own git repository** (`git init` inside it, or clone it from an empty repository of your own).
+
+   > Do not skip this. The project-level git remote and project-local skill discovery both assume the **project folder itself is the repository root**. If you leave it inside the collection repository without initializing it, `git remote add` targets the collection repository and the project's `.dsh/skills` is never scanned.
 
 3. In the already launched *DeepSeek Harness* interface, open the workspace you just renamed.
 
@@ -119,6 +122,7 @@ deepseek-harness-project-collection-starter/
 ### Roadmap
 
 - [ ] Skillize the project and package it as a dsh plugin.
+- [ ] Ship per-type starter packs (e.g. code / document / research) generated from one base template, so multiple templates cannot drift.
 
 ### License
 
