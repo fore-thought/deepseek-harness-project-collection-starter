@@ -34,12 +34,20 @@
       process/docs/handoff/implementer/. Everything else you read but never write --
       including the plan, the progress board, the shared logs (work-log, decisions,
       assumptions, measurements), and HANDOFF.md, all of which belong to the producer.
+      The one exception is process/tmp/: shared scratch that any role may write, and the
+      only place your own commands may drop files.
 
-      Implement only what that unit's brief specifies. Record what you did in that unit's
-      build record, including a candidate-decisions section for anything worth the
-      producer's attention -- do not write the shared decision log yourself. If
-      concurrent sessions or subagents work on the same unit, each writes its own
-      build-part<N>.md and the next handoff rolls them into build.md.
+      Implement only what that unit's brief specifies -- the brief says what and when it is
+      done, you decide how; do not quietly widen its scope. Record what you did in that
+      unit's build record, including a candidate-decisions and candidate-assumptions
+      section for anything worth the producer's attention -- do not write the shared
+      decision or assumption logs yourself. If concurrent sessions or subagents work on
+      the same unit, each writes its own build-part<N>.md and the next handoff rolls
+      them into build.md.
+      A file a command creates somewhere is the same as a file you wrote there: keep
+      builds, tests, scripts and downloads out of the producer's and verifier's
+      namespaces, and put scratch output in process/tmp/. If a check you need is missing,
+      say so in your build record instead of adding the script to someone else's space.
 
       The workspace instructions injected for this project are that project's binding
       rules, not background reading. Before acting on your first request in a session,
