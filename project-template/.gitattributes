@@ -1,0 +1,37 @@
+# 换行归一：仓库与工作区都按 LF
+#
+# 为什么显式写：Windows 上 git 默认 core.autocrlf=true——提交时把工作区 CRLF 转成 LF 存进
+# 仓库、检出时再把 LF 转成 CRLF 放回工作区。结果是「仓库 LF、工作区 CRLF」，与组级
+# AGENTS.md §4 要求的「LF 换行」拧着，且同一份文档在不同机器上换行不一致。
+#
+# eol=lf 覆盖 core.autocrlf：文本文件在仓库与工作区都保持 LF，规范与工作区一致，
+# 且不会出现「有人提交 CRLF、有人提交 LF」造成的整文件 diff。
+#
+# text=auto 仍让 git 自行判定文本与二进制，避免误伤；二进制类型显式标出以防万一。
+
+* text=auto eol=lf
+
+# 二进制：不做任何换行转换（防误判，也防 diff/合并工具误处理）
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary
+*.gz   binary
+*.7z   binary
+*.zst  binary
+*.woff binary
+*.woff2 binary
+*.ttf  binary
+*.otf  binary
+*.mp4  binary
+*.mov  binary
+*.wav  binary
+*.mp3  binary
+*.onnx binary
+*.safetensors binary
+*.pt   binary
+*.bin  binary

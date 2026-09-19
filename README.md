@@ -25,6 +25,7 @@ deepseek-harness-project-collection-starter/
 │   │   └── skills/project-flow/SKILL.md   # 开局触发：角色与各闸读档顺序
 │   ├── AGENTS.md                  # 唯一根级文档：项目规范 + 三类目录索引
 │   ├── .gitignore
+│   ├── .gitattributes             # 换行归一（LF）
 │   ├── inputs/
 │   │   ├── README.md
 │   │   ├── ai/
@@ -89,6 +90,8 @@ deepseek-harness-project-collection-starter/
 │       │       └── ctx.cjs
 │       └── tmp/
 │           └── README.md
+├── .gitattributes                 # 换行归一（LF）
+├── .gitignore                     # 排除 .memory/ 等本地专用区
 ├── LICENSE
 ├── README.md                      # 本文件（中文）
 └── README.en.md                   # 英文版
@@ -106,6 +109,8 @@ deepseek-harness-project-collection-starter/
 2. 将 `project-template` 改为你希望的工作区的名字，比如： `big-fat-fish` ，并**让这个文件夹自己成为一个 git 仓库**（在它里面 `git init`，或从你自己的空仓库 clone）。
 
    > 这一步不能省。项目级配置里的 git 远端、以及项目内技能的发现，都假定**项目文件夹自己就是仓库根**。若把它留在集合仓库里不初始化：`git remote add` 会加到集合仓库上，项目内的 `.agents/skills` 也不会被扫到。
+
+   > 换行归一不用额外做什么：`project-template` 自带 `.gitattributes`，随文件夹复制过去，`git init` 之后即生效。
 
 3. 在已经启动的 *DeepSeek Harness* 界面，打开刚改名的工作区。
 

@@ -25,6 +25,7 @@ deepseek-harness-project-collection-starter/
 │   │   └── skills/project-flow/SKILL.md   # session-start trigger: role and gate read order
 │   ├── AGENTS.md                  # the only root document: project rules + three-category index
 │   ├── .gitignore
+│   ├── .gitattributes             # line-ending normalization (LF)
 │   ├── inputs/
 │   │   ├── README.md
 │   │   ├── ai/
@@ -89,6 +90,8 @@ deepseek-harness-project-collection-starter/
 │       │       └── ctx.cjs
 │       └── tmp/
 │           └── README.md
+├── .gitattributes                 # line-ending normalization (LF)
+├── .gitignore                     # excludes .memory/ and other local-only areas
 ├── LICENSE
 ├── README.md                      # this file's Chinese counterpart (primary)
 └── README.en.md                   # English
@@ -106,6 +109,9 @@ deepseek-harness-project-collection-starter/
 2. Rename `project-template` to the name of the workspace you want, e.g., `big-fat-fish`, and **make that folder its own git repository** (`git init` inside it, or clone it from an empty repository of your own).
 
    > Do not skip this. The project-level git remote and project-local skill discovery both assume the **project folder itself is the repository root**. If you leave it inside the collection repository without initializing it, `git remote add` targets the collection repository and the project's `.agents/skills` is never scanned.
+
+   > Line endings need no extra work: `project-template` ships its own `.gitattributes`,
+   > so it comes along with the folder and takes effect right after `git init`.
 
 3. In the already launched *DeepSeek Harness* interface, open the workspace you just renamed.
 
