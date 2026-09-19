@@ -22,6 +22,7 @@ credentials/
 *token*
 process/project/configs/project-config.toml
 
-# 项目内 DSH 目录：技能必须入库，其余（DSH 可能写入的状态）不入库
-.dsh/*
-!.dsh/skills/
+# 项目内技能目录 .agents/ 不设忽略规则：它是项目资产，默认入库。
+# （旧规则 `.dsh/*` + `!.dsh/skills/` 已删：`.dsh` 是用户级 harness home 的目录名，
+#   项目级再用它会把项目资产与工具状态混在同一名下；那条规则还会把 skills 以外的
+#   文件静默排除出 git，见 AGENTS.md 变更记录 v1.2。）

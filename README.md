@@ -21,6 +21,8 @@ deepseek-harness-project-collection-starter/
 │   └── .gitignore
 ├── presets/                       # 三个角色预设（整份复制到 DSH 预设目录即装，可选能力）
 ├── project-template/              # 复制改名后即一个项目工作区
+│   ├── .agents/                   # 项目内技能（项目根 = 最近的 .git 祖先）
+│   │   └── skills/project-flow/SKILL.md   # 开局触发：角色与各闸读档顺序
 │   ├── AGENTS.md                  # 唯一根级文档：项目规范 + 三类目录索引
 │   ├── .gitignore
 │   ├── inputs/
@@ -48,10 +50,18 @@ deepseek-harness-project-collection-starter/
 │       │   ├── decisions.md
 │       │   ├── HANDOFF.md
 │       │   ├── measurements.md
+│       │   ├── progress.md        # 进度看板（多角色模式下制作人独占写）
 │       │   ├── work-log.md
-│       │   └── plans/
-│       │       ├── goal-spec.md
-│       │       └── plan.md
+│       │   ├── handoff/           # 每角色一份接续索引（多角色模式）
+│       │   │   ├── README.md
+│       │   │   ├── implementer/index.md
+│       │   │   ├── producer/index.md
+│       │   │   └── verifier/index.md
+│       │   ├── plans/
+│       │   │   ├── goal-spec.md
+│       │   │   └── plan.md
+│       │   └── units/             # 单元文件夹（传送带：brief/build/accept）
+│       │       └── README.md
 │       │       # spec-proposals/ 为规约修订成文提案，首次使用时创建
 │       ├── templates/             # 模板区
 │       │   ├── assumptions.template.md
@@ -59,10 +69,15 @@ deepseek-harness-project-collection-starter/
 │       │   ├── decisions.template.md
 │       │   ├── HANDOFF.template.md
 │       │   ├── measurements.template.md
+│       │   ├── role-handoff.template.md
 │       │   ├── work-log.template.md
-│       │   └── plans/
-│       │       ├── goal-spec.template.md
-│       │       └── plan.template.md
+│       │   ├── plans/
+│       │   │   ├── goal-spec.template.md
+│       │   │   └── plan.template.md
+│       │   └── units/
+│       │       ├── accept.template.md
+│       │       ├── brief.template.md
+│       │       └── build.template.md
 │       ├── project/
 │       │   ├── README.md
 │       │   ├── configs/
@@ -90,7 +105,7 @@ deepseek-harness-project-collection-starter/
 
 2. 将 `project-template` 改为你希望的工作区的名字，比如： `big-fat-fish` ，并**让这个文件夹自己成为一个 git 仓库**（在它里面 `git init`，或从你自己的空仓库 clone）。
 
-   > 这一步不能省。项目级配置里的 git 远端、以及项目内技能的发现，都假定**项目文件夹自己就是仓库根**。若把它留在集合仓库里不初始化：`git remote add` 会加到集合仓库上，项目内的 `.dsh/skills` 也不会被扫到。
+   > 这一步不能省。项目级配置里的 git 远端、以及项目内技能的发现，都假定**项目文件夹自己就是仓库根**。若把它留在集合仓库里不初始化：`git remote add` 会加到集合仓库上，项目内的 `.agents/skills` 也不会被扫到。
 
 3. 在已经启动的 *DeepSeek Harness* 界面，打开刚改名的工作区。
 

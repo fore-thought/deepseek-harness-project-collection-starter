@@ -53,7 +53,7 @@
 
 - 四道闸（立项/规划/执行/接续）+ 调研阶段 + 结项闸：`../shared-standards/AGENTS.md`
 - 多角色流水线（**可选能力**）：`../shared-standards/pipeline-and-roles.md`
-- 本项目操作技能：`.dsh/skills/project-flow/SKILL.md`
+- 本项目操作技能：`.agents/skills/project-flow/SKILL.md`
 - 大文件下载一律用户在主机执行（代理给下载表：网址+存储位置）
 - 请示用户优先提问卡片；数字/阈值必标 [MEASURED]/[ESTIMATED]/[UNKNOWN]
 - 里程碑 → ①决策回写 ②复盘 ③总结推送 → ④计划余量检查

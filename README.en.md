@@ -21,6 +21,8 @@ deepseek-harness-project-collection-starter/
 │   └── .gitignore
 ├── presets/                       # the three role presets — copy a folder into the DSH preset directory (optional)
 ├── project-template/              # rename this to create one project workspace
+│   ├── .agents/                   # project-local skills (project root = nearest .git ancestor)
+│   │   └── skills/project-flow/SKILL.md   # session-start trigger: role and gate read order
 │   ├── AGENTS.md                  # the only root document: project rules + three-category index
 │   ├── .gitignore
 │   ├── inputs/
@@ -48,10 +50,18 @@ deepseek-harness-project-collection-starter/
 │       │   ├── decisions.md
 │       │   ├── HANDOFF.md
 │       │   ├── measurements.md
+│       │   ├── progress.md        # progress board (producer-only in multi-role mode)
 │       │   ├── work-log.md
-│       │   └── plans/
-│       │       ├── goal-spec.md
-│       │       └── plan.md
+│       │   ├── handoff/           # one handoff index per role (multi-role mode)
+│       │   │   ├── README.md
+│       │   │   ├── implementer/index.md
+│       │   │   ├── producer/index.md
+│       │   │   └── verifier/index.md
+│       │   ├── plans/
+│       │   │   ├── goal-spec.md
+│       │   │   └── plan.md
+│       │   └── units/             # unit folders (conveyor: brief/build/accept)
+│       │       └── README.md
 │       │       # spec-proposals/ holds written spec proposals; created on first use
 │       ├── templates/             # template area
 │       │   ├── assumptions.template.md
@@ -59,10 +69,15 @@ deepseek-harness-project-collection-starter/
 │       │   ├── decisions.template.md
 │       │   ├── HANDOFF.template.md
 │       │   ├── measurements.template.md
+│       │   ├── role-handoff.template.md
 │       │   ├── work-log.template.md
-│       │   └── plans/
-│       │       ├── goal-spec.template.md
-│       │       └── plan.template.md
+│       │   ├── plans/
+│       │   │   ├── goal-spec.template.md
+│       │   │   └── plan.template.md
+│       │   └── units/
+│       │       ├── accept.template.md
+│       │       ├── brief.template.md
+│       │       └── build.template.md
 │       ├── project/
 │       │   ├── README.md
 │       │   ├── configs/
@@ -90,7 +105,7 @@ deepseek-harness-project-collection-starter/
 
 2. Rename `project-template` to the name of the workspace you want, e.g., `big-fat-fish`, and **make that folder its own git repository** (`git init` inside it, or clone it from an empty repository of your own).
 
-   > Do not skip this. The project-level git remote and project-local skill discovery both assume the **project folder itself is the repository root**. If you leave it inside the collection repository without initializing it, `git remote add` targets the collection repository and the project's `.dsh/skills` is never scanned.
+   > Do not skip this. The project-level git remote and project-local skill discovery both assume the **project folder itself is the repository root**. If you leave it inside the collection repository without initializing it, `git remote add` targets the collection repository and the project's `.agents/skills` is never scanned.
 
 3. In the already launched *DeepSeek Harness* interface, open the workspace you just renamed.
 
