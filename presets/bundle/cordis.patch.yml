@@ -461,7 +461,7 @@
       config:
         id: verifier
         name: 验收员
-        description: 按交底逐条验收、复现并写验收报告；不改被验收的产物，也不改计划
+        description: 按交底的验收细则逐条核验并写验收报告；不改被验收的产物，也不改计划
         order: 12
         plugins:
           - id: persona
