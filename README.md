@@ -26,6 +26,10 @@ deepseek-harness-project-collection-starter/
 │   ├── AGENTS.md                  # 唯一根级文档：项目规范 + 三类目录索引
 │   ├── .gitignore
 │   ├── .gitattributes             # 换行归一（LF）
+│   ├── configs/                   # 本地环境区（模板入库、实例不入库）
+│   │   ├── README.md
+│   │   ├── project-config.toml.template
+│   │   └── .env.template
 │   ├── inputs/
 │   │   ├── README.md
 │   │   ├── ai/
@@ -81,10 +85,6 @@ deepseek-harness-project-collection-starter/
 │       │       └── build.template.md
 │       ├── project/
 │       │   ├── README.md
-│       │   ├── configs/
-│       │   │   ├── README.md
-│       │   │   ├── project-config.toml.template
-│       │   │   └── .env.template
 │       │   └── scripts/
 │       │       ├── README.md
 │       │       └── ctx.cjs
@@ -119,8 +119,10 @@ deepseek-harness-project-collection-starter/
 4. 新建会话窗口，正常聊天即可
 
 5. 首次使用：复制 `shared-standards/user-config.toml.template` 为 `user-config.toml` 并填写 git 身份；
-   项目级同理（`project-config.toml.template` → `project-config.toml`，密钥模板
-   `.env.template` → `.env`）。不填则走默认/本地模式（见 `shared-standards/AGENTS.md` §6）。
+   项目级同理，在项目根 `configs/` 里把 `project-config.toml.template` 复制为 `project-config.toml`、
+   `.env.template` 复制为 `.env`。不填则走默认/本地模式。**不必一次配全**：代理会在第一次需要时
+   （首次 git 远端操作 / 首次访问某平台 / 首次 commit 身份）按需求点表引导你一次
+   （见 `shared-standards/AGENTS.md` §6）。
 
 ### 如何更好的管理项目？不管理！
 

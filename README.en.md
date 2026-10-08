@@ -26,6 +26,10 @@ deepseek-harness-project-collection-starter/
 │   ├── AGENTS.md                  # the only root document: project rules + three-category index
 │   ├── .gitignore
 │   ├── .gitattributes             # line-ending normalization (LF)
+│   ├── configs/                   # local environment area (templates committed, instances not)
+│   │   ├── README.md
+│   │   ├── project-config.toml.template
+│   │   └── .env.template
 │   ├── inputs/
 │   │   ├── README.md
 │   │   ├── ai/
@@ -81,10 +85,6 @@ deepseek-harness-project-collection-starter/
 │       │       └── build.template.md
 │       ├── project/
 │       │   ├── README.md
-│       │   ├── configs/
-│       │   │   ├── README.md
-│       │   │   ├── project-config.toml.template
-│       │   │   └── .env.template
 │       │   └── scripts/
 │       │       ├── README.md
 │       │       └── ctx.cjs
@@ -119,7 +119,13 @@ deepseek-harness-project-collection-starter/
 
 4. Create a new session window and chat as usual.
 
-5. First-time setup: copy `shared-standards/user-config.toml.template` to `user-config.toml` and fill in your git identity; do the same at project level (`project-config.toml.template` → `project-config.toml`, and the secret template `.env.template` → `.env`). If left unfilled, defaults/local mode apply (see `shared-standards/AGENTS.md` §6).
+5. First-time setup: copy `shared-standards/user-config.toml.template` to `user-config.toml` and
+   fill in your git identity; do the same at project level. In the project-root `configs/`, copy
+   `project-config.toml.template` to `project-config.toml` and `.env.template` to `.env`.
+   If left unfilled, defaults/local mode apply. **You need not fill everything up front**:
+   the agent prompts you once, at the first moment each item is actually needed (first git remote
+   operation / first access to a platform / first commit identity) — see
+   `shared-standards/AGENTS.md` §6.
 
 ### How to Better Manage Your Project? Don't!
 

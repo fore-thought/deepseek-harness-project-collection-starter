@@ -31,7 +31,7 @@
                 process/docs/decisions.md, process/docs/assumptions.md,
                 process/docs/measurements.md, process/docs/HANDOFF.md,
                 process/docs/handoff/producer/, process/docs/units/*/brief.md,
-                process/docs/construction.md, and inputs/ai/.
+                process/docs/construction.md, configs/, and inputs/ai/.
                 Every other path in this project you read but never write -- including outputs/
                 and process/project/, which belong to the implementer. The one exception is
                 process/tmp/: shared scratch that any role may write, and the only place your own

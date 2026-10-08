@@ -20,7 +20,8 @@ secrets/
 credentials/
 *.pem
 *token*
-process/project/configs/project-config.toml
+# 本地环境区（项目根 configs/）：模板入库，实例不入库
+configs/project-config.toml
 
 # 项目内技能目录 .agents/ 不设忽略规则：它是项目资产，默认入库。
 # （旧规则 `.dsh/*` + `!.dsh/skills/` 已删：`.dsh` 是用户级 harness home 的目录名，

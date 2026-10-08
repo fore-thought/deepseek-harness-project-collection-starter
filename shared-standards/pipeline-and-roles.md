@@ -4,7 +4,7 @@
 > 定位：**可选能力**。单会话流程（`AGENTS.md` §7 的四道闸）原样保留；只有把同一项目
 > 拆成多个角色会话接力时才需要本文件。**读取方式（组级 AGENTS.md §5）：启用多角色时读；
 > 单会话项目不必读。**
-> 版本: v1.1 ｜ 建立: 2026-09-16 ｜ 最近修订: 2026-09-19 ｜ 变更记录见文末。
+> 版本: v1.2 ｜ 建立: 2026-09-16 ｜ 最近修订: 2026-10-08 ｜ 变更记录见文末。
 
 ## 0. 什么时候用
 
@@ -18,7 +18,7 @@
 
 | 角色 | 预设 id | 中文显示名 | 写权：只写这些路径 | 其余 |
 |---|---|---|---|---|
-| 制作人 | `producer` | 制作人 | `process/docs/plans/`、`process/docs/progress.md`、`work-log.md`、`construction.md`、`decisions.md`、`assumptions.md`、`measurements.md`、`process/docs/HANDOFF.md`、`process/docs/handoff/producer/`、`process/docs/units/*/brief.md`、`inputs/ai/` | 只读 |
+| 制作人 | `producer` | 制作人 | `process/docs/plans/`、`process/docs/progress.md`、`work-log.md`、`construction.md`、`decisions.md`、`assumptions.md`、`measurements.md`、`process/docs/HANDOFF.md`、`process/docs/handoff/producer/`、`process/docs/units/*/brief.md`、`configs/`、`inputs/ai/` | 只读 |
 | 实现者 | `implementer` | 实现者 | `outputs/`、`process/project/`、`process/docs/units/*/build*.md`、`process/docs/handoff/implementer/` | 只读 |
 | 验收员 | `verifier` | 验收员 | `process/docs/units/*/accept.md`、`process/docs/handoff/verifier/` | 只读 |
 
@@ -28,7 +28,9 @@
   是我们能碰到的最高权威。没有用角色预设的会话按 §4 降级处理。
 - **表里没列的位置当场裁定，不留给 §3 第 2 步**：`process/docs/construction.md` 归**制作人**
   （它是从各单元 `build.md` 蒸馏出的定版文档，蒸馏本来就是制作人的活）；`process/project/`
-  **整块含 `scripts/`** 归实现者——制作人需要脚本时把需求写进 brief，不动手；`inputs/ai/`
+  归实现者（正式工程，现只剩 `scripts/`）——制作人需要脚本时把需求写进 brief，不动手；
+  项目根 `configs/`（**本地环境区**：项目配置与密钥，模板入库、实例不入库）归**制作人**
+  ——它记的是方向性事实（git 模式、路径风格），值由用户提供、文件由制作人落；`inputs/ai/`
   归制作人（组级 §7.6 的调研报告要落在这里，可它原先不在任何人的表上），`inputs/user/`
   由用户投放、代理只读；`process/tmp/` **无归属**、任何角色可用（已被项目 `.gitignore`
   排除、不入库），专供命令的临时落地物——**这是"其余只读"的唯一豁免**，三份 persona 里
@@ -226,3 +228,4 @@ process/docs/
 |---|---|---|---|
 | 2026-09-16 | v1.0 | 首次建立：三个角色（制作人/实现者/验收员）与写权表、单元文件夹传送带、归属与越界规程、四层降级、流水线纪律、接续顺序、新增角色入口、规矩存活位置的硬约束 | 用户 |
 | 2026-09-19 | v1.1 | 补上边界的另一半。**新增**：§1.1 闸→谁动手（真源，模板 `AGENTS.md` 存逐行投影，成对维护）、§3.1 做多了三档（第二档"命令产文件=写文件"、第三档"做/做"对称界线 + 自测判据）、§5.1 收单元七步的角色切分（含 TOP 2 在多角色下的读法）。**更正**：§1 补四处无主位置的归属裁定（`construction.md`/`process/project/` 含 `scripts/`/`inputs/ai/`/`process/tmp/`）与「记一次偏差」的落点；§2 末条「候选决策」扩为「候选决策与候选假设」（组级 A1 在实现者侧的出口）；§4 层 2 与地板两格按实测改写——极简模式的组合里没有注入模块，原先"只剩 AGENTS.md 那两句"是不成立的兜底承诺。**为何通用**：三档判据与七步切分只管"多角色接力时谁动手"，与领域、技术栈、产物类型无关；任何按角色分工的协作都会撞上"顺手把上游的活做了"。**防的事故（频率×损失）**：制作人照单会话清单整段代做，实现者会话无事可做（每个单元收尾必发，损失为流水线停摆 + 双份记录）；命令在他人命名空间生成文件导致路径核对失真（每次验收都在，损失为返工整单元）；四处无主位置被两个角色同时写（每个里程碑一次，损失为定版文档静默覆盖） | 用户（2026-09-19 会话按 diff 逐条批准后落盘） |
+| 2026-10-08 | v1.2 | 项目配置迁到**项目根 `configs/`**（第四类「本地环境」）后同步角色表：§1 制作人写权加 `configs/`；§1 的无主位置裁定补一条——`process/project/` 归实现者（现只剩 `scripts/`），项目根 `configs/` 归制作人（值由用户提供、文件由制作人落）。**为何通用**：写权表按"谁产出"划，而配置是"用户提供的运行环境"，必须逐项裁定，不能靠它恰好落在谁的目录里；任何多角色协作都会遇到同一处境——上游角色需要写一个不属于产物区的文件。**防的事故（频率×损失）**：配置被目录级裁定顺带划给下游角色，上游（做 git 与对外沟通的那一方）写它反而算越界（每个用多角色的项目一次，损失为越界争用与反复当场裁定）；角色表与三份 persona 因这一条不一致（每次改表，损失为 persona 与真源分叉） | 用户（2026-10-08 会话批准提案后落盘） |

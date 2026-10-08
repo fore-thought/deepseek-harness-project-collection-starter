@@ -1,5 +1,6 @@
-# 项目级配置模板 —— 复制为 project-config.toml 后由用户填写（project-config.toml 不入库）
+# 项目级配置模板 —— 复制为本目录的 project-config.toml 后由用户填写（实例不入库）
 # 命名规则：模板名 = 实例名 + `.template`，去掉后缀即实例名（组级 AGENTS.md §6）。
+# 时机：第一次 git 远端操作前由制作人引导一次（组级 AGENTS.md §6「配置需求点」）。
 # 规则：组级 AGENTS.md §6「配置读取优先级」——项目配置优先，未配置读组级
 # ../shared-standards/user-config.toml（路径相对项目根），再没有则卡片提示用户决定。
 # 本文件只含非密钥配置；密钥统一放 configs/.env（模板 .env.template 入库，见 standards.md §2）。

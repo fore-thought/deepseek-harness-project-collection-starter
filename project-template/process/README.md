@@ -8,7 +8,7 @@
   归档/打包时整体剔除
 - `project/`：本项目正式工程（工程实现）
   - `project/scripts/`：脚本
-  - `project/configs/`：配置
+- 配置不在本区：项目根 `configs/`（本地环境区）——模板入库、实例不入库
 - `docs/`：文档**实例区**（只放实例文件）
   - `HANDOFF.md`（会话交接，含用户职责表）/ `work-log.md`（工作日志，全路径）/
     `decisions.md`（决策 ADR）/ `assumptions.md`（假设，含验证时机）/
