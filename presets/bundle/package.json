@@ -1,0 +1,12 @@
+{
+  "name": "@deepseek-harness-project-collection/role-presets",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "三个角色预设（制作人 / 实现者 / 验收员）的组合包：装一次，三个角色一起到位",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

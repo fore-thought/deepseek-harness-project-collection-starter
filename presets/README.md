@@ -1,47 +1,52 @@
 # presets（角色预设）
 
-> 本目录下**每个角色一个文件夹，文件夹本身就是可直接安装的预设**：整份复制到
-> `<DSH_HOME>/.agent-presets/` 即可，不需要自己拼装任何文件。三个角色按需装，只装一个
-> 也完全可用。角色表、写权与流水线纪律的**唯一真源**是
+> 本目录下 `bundle/` 是**一个可直接安装的组合包**，装一次三个角色一起到位。
+> 角色表、写权与流水线纪律的**唯一真源**是
 > `../shared-standards/pipeline-and-roles.md`；本目录只负责让"身份"进入系统提示词层。
 
-## 安装（每个角色一次）
+## 安装（装这一份，三个角色一起到位）
 
-把角色文件夹整个复制过去：
+组合包里是**三条独立声明**（`producer` / `implementer` / `verifier`），装进去之后
+选择器里会同时出现三个显示名，各按各的用即可——只用一个也完全可用。
 
-| 角色 | 复制这个文件夹 | 装到这里 |
-|---|---|---|
-| 制作人 | `presets/producer/` | `<DSH_HOME>/.agent-presets/producer/` |
-| 实现者 | `presets/implementer/` | `<DSH_HOME>/.agent-presets/implementer/` |
-| 验收员 | `presets/verifier/` | `<DSH_HOME>/.agent-presets/verifier/` |
+| 方式 | 怎么做 |
+|---|---|
+| 在会话里装 | 让代理用 `plugin_manager` 工具，`action: install_bundle`，`target` 填 `presets/bundle/` 的**绝对路径** |
+| 在命令行装 | `dsh plugin --profile <profile> add <presets/bundle/ 的绝对路径>` |
 
-- `<DSH_HOME>` 默认是 `~/.dsh`（Windows 通常是 `C:\Users\<你>\.dsh`）；DSH 界面上
-  「打开预设目录」一类的入口指向的就是它。
-- 复制完不用重启：新建会话时，选择器里就会出现对应的显示名。
+- 安装需要完整访问权限或一次性批准；装的是本机 profile，**不是**某个项目。
+- 装完不用重启：新建会话时，选择器里就会出现三个显示名。
+- 验证：`plugin_manager` 的 `list_bundles` 能看到本包，`list_plugins` 里
+  `preset-producer` / `preset-implementer` / `preset-verifier` 三行处于已激活态。
 
-每个文件夹里只有两个文件：
+`bundle/` 里只有两个文件：
 
-- `agent.cordis.yml`：完整组合（由某个版本的 DSH 标准模式 + 本角色 persona 生成）；
-- `preset.yml`：显示名与描述。
+- `cordis.patch.yml`：三条 `@deepseek-ai/dsh-agent-preset` 声明，每条一份完整组合；
+- `package.json`：告诉 DSH 这个目录是可安装的 bundle（`dsh.bundle.patch` 指向上面那个文件）。
+
+> **`<角色>/agent.cordis.yml` 与 `<角色>/preset.yml` 现在只是源料**，不再用于安装。
+> 三条声明的 `config.plugins` 由它们与某个版本的 standard 预设合成而来。
+> 保留它们是为了让 persona 正文有个好读的落点——**改了 persona 要同步回
+> `bundle/cordis.patch.yml`**，否则下一个人会照着过期的源料改。
 
 ## 与 DSH 标准模式保持一致，是本仓库的维护责任
 
-> `agent.cordis.yml` 的正文是 DSH 源文件的**逐字副本**，含它自带的长注释行（有几行超过
-> 本仓库 §4 的 100 字符行宽约定）——不要为了行宽去重排，重排会让"与标准模式的差异只有
-> persona 段"这条判据失效。
+> `config.plugins` 的正文是 DSH 源文件的**逐字副本**，含它自带的长注释行与长字符串
+> （`plan-mode` 的 `section` 有几段很长）——不要为了行宽去重排，重排会让"与标准模式的
+> 差异只有 persona 段"这条判据失效。
 
-`agent.cordis.yml` 派生自**某个版本**的标准模式，而标准模式会随 DSH 升级变化（新增或改名
-工具行、改默认值、动配置）。升级后重新生成这三份，只有一步不同：**把新的标准模式组合覆盖
-进来，再把本角色的 `- id: persona` 段贴回去**——
+三条声明派生自**某个版本**的 standard 预设，而它会随 DSH 升级变化（新增或改名工具行、
+改默认值、动配置）。升级后重新取一次，只有一步不同：**把新的标准插件清单覆盖进来，
+再把本角色的 persona 段贴回去**——
 
-1. 用当前 DSH 自带的标准模式组合（预设目录里的 `standard/agent.cordis.yml`）替换
-   `agent.cordis.yml` 的正文；
-2. 从 `git show HEAD~1:presets/<角色>/agent.cordis.yml` 取出该角色的 `- id: persona` 段
-   （从 `- id: persona` 到 `- id: agent-instructions` 之前），覆盖回同样的位置；
-3. 三个角色都做完后校验一次：装到 `<DSH_HOME>/.agent-presets/` 下，新建会话能选到该显示名、
-   且能正常开局。
+1. 用当前 DSH 自带的 standard 预设（`@deepseek-ai/dsh-web-app` 组合里的
+   `presets/standard.patch.yml`）作为插件清单来源；
+2. 把清单整段贴进 `cordis.patch.yml` 三条声明的 `config.plugins`，**只把
+   `- id: persona` 那一小段换成各角色的 persona**（`prefix` + `suffix` 两个键）；
+3. 校验：`config.plugins` 除 persona 段外与标准模式**逐字相同**；三条声明的插件清单
+   彼此**逐字相同**；然后按上面的方式重装一次，确认三个显示名都能选到、都能正常开局。
 
-三份组合与标准模式的差异**只有 persona 这一段**，这是校验时最好用的判据。
+**三条声明之间的差异只有 persona 段**，这是校验时最好用的判据。
 
 ## 为什么基于标准模式，不基于 PTC 模式
 
@@ -57,10 +62,10 @@
    text plus one transport schema rather than promising a universal reduction`——固定开销是
    换；真正的节省在 `every other intermediate result stays out of the conversation`（历史增长）。
 
-**想要 PTC 的节省**：复制装好之后，直接在 `<DSH_HOME>/.agent-presets/<角色>/agent.cordis.yml`
-里做三处改动——加一行 `- id: tool-presentation` / `name: '@deepseek-ai/dsh-agent-tool-presentation'` /
-`config.mode: ptc`，再把 `workflow-ptc` 与 `tool-workflow` 两行都置 `disabled: true`。改完先跑
-同一个任务，用界面上的上下文计量比一次占用，数字出来再决定要不要长期用。
+**想要 PTC 的节省**：照同一份清单自己加一行 `tool-presentation`
+（`@deepseek-ai/dsh-agent-tool-presentation`，`config.mode: ptc`），并把 `workflow-ptc` 与
+`tool-workflow` 两行都置 `disabled: true`。改完先跑同一个任务，用界面上的上下文计量比一次
+占用，数字出来再决定要不要长期用。
 
 ## 三条纪律
 

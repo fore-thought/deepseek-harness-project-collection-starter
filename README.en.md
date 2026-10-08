@@ -19,7 +19,7 @@ deepseek-harness-project-collection-starter/
 │   ├── standards.md
 │   ├── user-config.toml.template
 │   └── .gitignore
-├── presets/                       # the three role presets — copy a folder into the DSH preset directory (optional)
+├── presets/                       # the three role presets, packaged as one installable bundle (optional)
 ├── project-template/              # rename this to create one project workspace
 │   ├── .agents/                   # project-local skills (project root = nearest .git ancestor)
 │   │   └── skills/project-flow/SKILL.md   # session-start trigger: role and gate read order
