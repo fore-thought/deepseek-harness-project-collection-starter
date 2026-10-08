@@ -137,6 +137,8 @@ deepseek-harness-project-collection-starter/
 
   You can **copy and use** this message directly. (Feel free to use your own wording; the template's markdown already includes behavioral constraints for this message, but this serves as an extra reinforcement. The **key term** is simply **handoff document** and **new session**.)
 
+- **Where the 60% figure comes from**: the project ships `process/project/scripts/ctx.cjs`, which the agent runs by itself at each wrap-up checkpoint to read the percentage. It reads *DeepSeek Harness*'s own context projection — the same number behind the ring meter below the composer — and the window comes from the capacity the current model actually declares, not a hard-coded value. You can also just look at it yourself: it sits below the input box, on the same row as the send button.
+
 - To review or improve the project rules (the "reflection" workflow), open a **dedicated session**: read the rules first → analyze completeness → discuss & confirm → land changes per `shared-standards/AGENTS.md` §9. Don't mix rule changes into regular work sessions.
 - For anything else you're unsure about or curious about the underlying principles, just take a look at the directory structure and the markdown documents under it.
 

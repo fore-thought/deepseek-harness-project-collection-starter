@@ -58,6 +58,8 @@
 - 请示用户优先提问卡片；数字/阈值必标 [MEASURED]/[ESTIMATED]/[UNKNOWN]
 - 里程碑 → ①决策回写 ②复盘 ③总结推送 → ④计划余量检查
 - 每次 git 操作三问：①已设远端？②仅本地？③已推送？（模式见用户职责表）
+- 收尾检查点跑 `process/project/scripts/ctx.cjs` 看上下文占用；占用按 `projectedTokens
+  ÷ contextWindow` 判，≥60% → 走切会话收尾流程
 
 ## 7. 用户职责表
 
