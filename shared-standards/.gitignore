@@ -3,6 +3,9 @@
 shared-standards/user-config.toml
 
 # 敏感信息（防御性：组级目录原则上不放密钥；防误建误推泄露）
+# 这里**故意**用裸名——上面那条「精确路径」的写法意见不适用于本节：宁可误伤任意深度的
+# 同名普通文件（如 tokenizer.json、tokens/），也不放过密钥；被误伤时改名或 git add -f。
+# 口径见组级 standards.md §2「敏感信息管理」。
 *.env
 secrets/
 credentials/

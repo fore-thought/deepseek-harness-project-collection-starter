@@ -19,6 +19,10 @@
 | 分段读 | `plans/plan.md`（只读当前段门禁表） |
 | 按字段筛读 | `assumptions.md`（先读「近期可实测」与状态未定条目） |
 | 按步骤清单执行 | `construction.md`（按前置条件/命令/判据逐条执行） |
+| 索引 + 按需展开 | `measurements.md`（头部实测索引；成本只看合计脚本输出） |
+| 全文必读（一屏） | `progress.md`（多角色模式下制作人接续时读全文；单会话模式可留空） |
+| 按当前单元读 | `units/<单元>/`（`brief.md` → `build*.md` → `accept.md`；已完成单元按需回看） |
+| 读自己那一份 | `handoff/<角色>/index.md`（读索引最后一行指向的最新交接文件） |
 
 > 追加类文档（work-log / decisions / assumptions / measurements）：**只追加、不重写、
 > 不重排、不整理格式**，保证多会话合并时按时间戳即可解决冲突。
