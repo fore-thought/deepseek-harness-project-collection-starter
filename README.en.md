@@ -22,7 +22,7 @@ deepseek-harness-project-collection-starter/
 ├── presets/                       # the three role presets, packaged as one installable bundle (optional)
 ├── project-template/              # rename this to create one project workspace
 │   ├── .agents/                   # project-local skills (project root = nearest .git ancestor)
-│   │   └── skills/project-flow/SKILL.md   # session-start trigger: role and gate read order
+│   │   └── skills/project-flow/SKILL.md   # session-start trigger: mode/role decision and gate read order
 │   ├── AGENTS.md                  # the only root document: project rules + three-category index
 │   ├── .gitignore
 │   ├── .gitattributes             # line-ending normalization (LF)

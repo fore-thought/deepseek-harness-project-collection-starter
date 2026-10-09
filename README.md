@@ -22,7 +22,7 @@ deepseek-harness-project-collection-starter/
 ├── presets/                       # 三个角色预设，打包成一个可安装的 bundle（可选能力）
 ├── project-template/              # 复制改名后即一个项目工作区
 │   ├── .agents/                   # 项目内技能（项目根 = 最近的 .git 祖先）
-│   │   └── skills/project-flow/SKILL.md   # 开局触发：角色与各闸读档顺序
+│   │   └── skills/project-flow/SKILL.md   # 开局触发：模式/角色判定与各闸读档顺序
 │   ├── AGENTS.md                  # 唯一根级文档：项目规范 + 三类目录索引
 │   ├── .gitignore
 │   ├── .gitattributes             # 换行归一（LF）
